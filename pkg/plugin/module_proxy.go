@@ -7,8 +7,8 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/module"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/navigation"
 	"github.com/kubenext/lissio/pkg/view/component"
 )
@@ -41,7 +41,7 @@ func (m *ModuleProxy) Name() string {
 	return m.Metadata.Name
 }
 
-func (m *ModuleProxy) ClientRequestHandlers() []octant.ClientRequestHandler {
+func (m *ModuleProxy) ClientRequestHandlers() []controllers.ClientRequestHandler {
 	return nil
 }
 
@@ -84,8 +84,8 @@ func (ModuleProxy) SetContext(ctx context.Context, contextName string) error {
 }
 
 // Generators is a no-op
-func (ModuleProxy) Generators() []octant.Generator {
-	return []octant.Generator{}
+func (ModuleProxy) Generators() []controllers.Generator {
+	return []controllers.Generator{}
 }
 
 // SupportedGroupVersionKind is currently a no-op. In the future this will allow plugins

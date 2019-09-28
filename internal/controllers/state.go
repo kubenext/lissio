@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package octant
+package controllers
 
 import (
 	"context"
@@ -11,7 +11,7 @@ import (
 	"github.com/kubenext/lissio/pkg/action"
 )
 
-//go:generate mockgen -destination=./fake/mock_state.go -package=fake github.com/kubenext/lissio/internal/octant State
+//go:generate mockgen -destination=./fake/mock_state.go -package=fake github.com/kubenext/lissio/internal/controllers State
 
 // UpdateCancelFunc cancels the update.
 type UpdateCancelFunc func()

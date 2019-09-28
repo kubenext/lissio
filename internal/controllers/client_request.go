@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-package octant
+package controllers
 
 import (
 	"github.com/kubenext/lissio/pkg/action"

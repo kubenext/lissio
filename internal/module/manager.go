@@ -13,8 +13,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	"github.com/kubenext/lissio/internal/cluster"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/log"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -39,7 +39,7 @@ type ManagerInterface interface {
 
 	ModuleForContentPath(contentPath string) (Module, bool)
 
-	ClientRequestHandlers() []octant.ClientRequestHandler
+	ClientRequestHandlers() []controllers.ClientRequestHandler
 
 	ObjectPath(namespace, apiVersion, kind, name string) (string, error)
 }
@@ -168,8 +168,8 @@ func (m *Manager) ModuleForContentPath(contentPath string) (Module, bool) {
 }
 
 // ClientRequestHandlers returns client request handlers for all modules.
-func (m *Manager) ClientRequestHandlers() []octant.ClientRequestHandler {
-	var list []octant.ClientRequestHandler
+func (m *Manager) ClientRequestHandlers() []controllers.ClientRequestHandler {
+	var list []controllers.ClientRequestHandler
 
 	for _, m := range m.loadedModules {
 		list = append(list, m.ClientRequestHandlers()...)

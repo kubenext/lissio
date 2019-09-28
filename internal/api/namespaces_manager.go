@@ -13,9 +13,9 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/kubenext/lissio/internal/cluster"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/event"
 	"github.com/kubenext/lissio/internal/log"
-	"github.com/kubenext/lissio/internal/octant"
 )
 
 // NamespaceManagerConfig is configuration for NamespacesManager.
@@ -68,12 +68,12 @@ func NewNamespacesManager(config NamespaceManagerConfig, options ...NamespacesMa
 }
 
 // Handlers returns nil.
-func (n NamespacesManager) Handlers() []octant.ClientRequestHandler {
+func (n NamespacesManager) Handlers() []controllers.ClientRequestHandler {
 	return nil
 }
 
 // Start starts the manager. It periodically generates a list of namespaces.
-func (n *NamespacesManager) Start(ctx context.Context, state octant.State, s OctantClient) {
+func (n *NamespacesManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
 	ch := make(chan struct{}, 1)
 	defer func() {
 		close(ch)
@@ -82,7 +82,7 @@ func (n *NamespacesManager) Start(ctx context.Context, state octant.State, s Oct
 	n.poller.Run(ctx, ch, n.runUpdate(state, s), event.DefaultScheduleDelay)
 }
 
-func (n *NamespacesManager) runUpdate(state octant.State, client OctantClient) PollerFunc {
+func (n *NamespacesManager) runUpdate(state controllers.State, client OctantClient) PollerFunc {
 	var previous []byte
 
 	return func(ctx context.Context) bool {
@@ -133,9 +133,9 @@ func NamespacesGenerator(_ context.Context, config NamespaceManagerConfig) ([]st
 }
 
 // CreateNamespacesEvent creates a namespaces event.
-func CreateNamespacesEvent(namespaces []string) octant.Event {
-	return octant.Event{
-		Type: octant.EventTypeNamespaces,
+func CreateNamespacesEvent(namespaces []string) controllers.Event {
+	return controllers.Event{
+		Type: controllers.EventTypeNamespaces,
 		Data: map[string]interface{}{
 			"namespaces": namespaces,
 		},

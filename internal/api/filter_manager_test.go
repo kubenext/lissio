@@ -16,8 +16,8 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 
 	"github.com/kubenext/lissio/internal/api"
-	"github.com/kubenext/lissio/internal/octant"
-	octantFake "github.com/kubenext/lissio/internal/octant/fake"
+	"github.com/kubenext/lissio/internal/controllers"
+	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -46,7 +46,7 @@ func TestFilterManager_AddFilter(t *testing.T) {
 	defer controller.Finish()
 
 	state := octantFake.NewMockState(controller)
-	state.EXPECT().AddFilter(octant.Filter{Key: "foo", Value: "bar"})
+	state.EXPECT().AddFilter(controllers.Filter{Key: "foo", Value: "bar"})
 	state.EXPECT().SendAlert(gomock.Any())
 
 	manager := api.NewFilterManager()
@@ -66,7 +66,7 @@ func TestFilterManager_ClearFilters(t *testing.T) {
 	defer controller.Finish()
 
 	state := octantFake.NewMockState(controller)
-	state.EXPECT().SetFilters([]octant.Filter{})
+	state.EXPECT().SetFilters([]controllers.Filter{})
 	state.EXPECT().SendAlert(gomock.Any())
 
 	manager := api.NewFilterManager()
@@ -80,7 +80,7 @@ func TestFilterManager_RemoveFilter(t *testing.T) {
 	defer controller.Finish()
 
 	state := octantFake.NewMockState(controller)
-	state.EXPECT().RemoveFilter(octant.Filter{Key: "foo", Value: "bar"})
+	state.EXPECT().RemoveFilter(controllers.Filter{Key: "foo", Value: "bar"})
 	state.EXPECT().SendAlert(gomock.Any())
 
 	manager := api.NewFilterManager()
@@ -102,7 +102,7 @@ func TestFilterFromPayload(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    octant.Filter
+		want    controllers.Filter
 		isFound bool
 	}{
 		{
@@ -114,7 +114,7 @@ func TestFilterFromPayload(t *testing.T) {
 					},
 				},
 			},
-			want:    octant.Filter{Key: "foo", Value: "bar"},
+			want:    controllers.Filter{Key: "foo", Value: "bar"},
 			isFound: true,
 		},
 		{
@@ -122,7 +122,7 @@ func TestFilterFromPayload(t *testing.T) {
 			args: args{
 				in: action.Payload{},
 			},
-			want:    octant.Filter{},
+			want:    controllers.Filter{},
 			isFound: false,
 		},
 		{
@@ -134,7 +134,7 @@ func TestFilterFromPayload(t *testing.T) {
 					},
 				},
 			},
-			want:    octant.Filter{},
+			want:    controllers.Filter{},
 			isFound: false,
 		},
 		{
@@ -146,7 +146,7 @@ func TestFilterFromPayload(t *testing.T) {
 					},
 				},
 			},
-			want:    octant.Filter{},
+			want:    controllers.Filter{},
 			isFound: false,
 		},
 	}
@@ -166,13 +166,13 @@ func TestFiltersFromQueryParams(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    []octant.Filter
+		want    []controllers.Filter
 		wantErr bool
 	}{
 		{
 			name: "single filter",
 			args: args{in: "foo:bar"},
-			want: []octant.Filter{{
+			want: []controllers.Filter{{
 				Key:   "foo",
 				Value: "bar",
 			}},
@@ -181,7 +181,7 @@ func TestFiltersFromQueryParams(t *testing.T) {
 		{
 			name: "multiple filters",
 			args: args{in: []interface{}{"foo:bar", "baz:qux"}},
-			want: []octant.Filter{
+			want: []controllers.Filter{
 				{Key: "foo", Value: "bar"},
 				{Key: "baz", Value: "qux"},
 			},
@@ -214,13 +214,13 @@ func TestParseFilterQueryParam(t *testing.T) {
 	tests := []struct {
 		name    string
 		args    args
-		want    octant.Filter
+		want    controllers.Filter
 		wantErr bool
 	}{
 		{
 			name: "valid",
 			args: args{"foo:bar"},
-			want: octant.Filter{
+			want: controllers.Filter{
 				Key:   "foo",
 				Value: "bar",
 			},
@@ -229,7 +229,7 @@ func TestParseFilterQueryParam(t *testing.T) {
 		{
 			name:    "invalid",
 			args:    args{"foobar"},
-			want:    octant.Filter{},
+			want:    controllers.Filter{},
 			wantErr: true,
 		},
 	}
@@ -249,7 +249,7 @@ func TestParseFilterQueryParam(t *testing.T) {
 
 func TestFiltersToLabelSet(t *testing.T) {
 	type args struct {
-		filters []octant.Filter
+		filters []controllers.Filter
 	}
 	tests := []struct {
 		name string
@@ -259,7 +259,7 @@ func TestFiltersToLabelSet(t *testing.T) {
 		{
 			name: "in general",
 			args: args{
-				filters: []octant.Filter{
+				filters: []controllers.Filter{
 					{Key: "foo", Value: "bar"},
 					{Key: "baz", Value: "qux"},
 				},

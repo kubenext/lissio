@@ -15,10 +15,10 @@ import (
 
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/describer"
 	"github.com/kubenext/lissio/internal/event"
 	"github.com/kubenext/lissio/internal/module"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/action"
 	"github.com/kubenext/lissio/pkg/icon"
 	"github.com/kubenext/lissio/pkg/navigation"
@@ -57,7 +57,7 @@ func (Configuration) Name() string {
 	return "configuration"
 }
 
-func (c Configuration) ClientRequestHandlers() []octant.ClientRequestHandler {
+func (c Configuration) ClientRequestHandlers() []controllers.ClientRequestHandler {
 	return nil
 }
 
@@ -141,8 +141,8 @@ func (c Configuration) ResetCRDs(ctx context.Context) error {
 }
 
 // Generators allow modules to send events to the frontend.
-func (c Configuration) Generators() []octant.Generator {
-	return []octant.Generator{
+func (c Configuration) Generators() []controllers.Generator {
+	return []controllers.Generator{
 		c.kubeContextGenerator,
 	}
 }

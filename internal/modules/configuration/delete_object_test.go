@@ -8,8 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/log"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/internal/testutil"
 	"github.com/kubenext/lissio/pkg/action"
 	actionFake "github.com/kubenext/lissio/pkg/action/fake"
@@ -26,7 +26,7 @@ func TestObjectDeleter_ActionName(t *testing.T) {
 	logger := log.NopLogger()
 
 	d := NewObjectDeleter(logger, objectStore)
-	require.Equal(t, octant.ActionDeleteObject, d.ActionName())
+	require.Equal(t, controllers.ActionDeleteObject, d.ActionName())
 }
 
 func TestObjectDeleter_Handle(t *testing.T) {

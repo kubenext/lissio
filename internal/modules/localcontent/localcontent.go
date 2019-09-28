@@ -19,8 +19,8 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/module"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/navigation"
 	"github.com/kubenext/lissio/pkg/view/component"
 )
@@ -45,7 +45,7 @@ func (l *LocalContent) Name() string {
 	return "local"
 }
 
-func (l *LocalContent) ClientRequestHandlers() []octant.ClientRequestHandler {
+func (l *LocalContent) ClientRequestHandlers() []controllers.ClientRequestHandler {
 	return nil
 }
 
@@ -227,8 +227,8 @@ func (l *LocalContent) ResetCRDs(ctx context.Context) error {
 }
 
 // Generators allow modules to send events to the frontend.
-func (l *LocalContent) Generators() []octant.Generator {
-	return []octant.Generator{}
+func (l *LocalContent) Generators() []controllers.Generator {
+	return []controllers.Generator{}
 }
 
 func (l *LocalContent) SetContext(ctx context.Context, contextName string) error {

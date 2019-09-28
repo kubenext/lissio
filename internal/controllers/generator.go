@@ -3,14 +3,14 @@ Copyright (c) 2019 VMware, Inc. All Rights Reserved.
 SPDX-License-Identifier: Apache-2.0
 */
 
-package octant
+package controllers
 
 import (
 	"context"
 	"time"
 )
 
-//go:generate mockgen -destination=./fake/mock_generator.go -package=fake github.com/kubenext/lissio/internal/octant Generator
+//go:generate mockgen -destination=./fake/mock_generator.go -package=fake github.com/kubenext/lissio/internal/controllers Generator
 
 // Generator generates events.
 type Generator interface {

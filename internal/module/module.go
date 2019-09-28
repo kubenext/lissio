@@ -12,7 +12,7 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/pkg/navigation"
 	"github.com/kubenext/lissio/pkg/view/component"
 )
@@ -29,7 +29,7 @@ type Module interface {
 	// Name is the name of the module.
 	Name() string
 	// ClientRequestHandlers are handlers for handling client requests.
-	ClientRequestHandlers() []octant.ClientRequestHandler
+	ClientRequestHandlers() []controllers.ClientRequestHandler
 	// Content generates content for a path.
 	Content(ctx context.Context, contentPath string, opts ContentOptions) (component.ContentResponse, error)
 	// ContentPath will be used to construct content paths.
@@ -47,7 +47,7 @@ type Module interface {
 	SetContext(ctx context.Context, contextName string) error
 
 	// Generators allow modules to send events to the frontend.
-	Generators() []octant.Generator
+	Generators() []controllers.Generator
 
 	// SupportedGroupVersionKind returns a slice of supported GVKs it owns.
 	SupportedGroupVersionKind() []schema.GroupVersionKind

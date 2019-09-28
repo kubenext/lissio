@@ -15,10 +15,10 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/sync/errgroup"
 
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/event"
 	"github.com/kubenext/lissio/internal/log"
 	"github.com/kubenext/lissio/internal/module"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/navigation"
 )
 
@@ -31,7 +31,7 @@ type NavigationManagerConfig interface {
 type NavigationManagerOption func(n *NavigationManager)
 
 // NavigationGeneratorFunc is a function that generates a navigation tree.
-type NavigationGeneratorFunc func(ctx context.Context, state octant.State, config NavigationManagerConfig) ([]navigation.Navigation, error)
+type NavigationGeneratorFunc func(ctx context.Context, state controllers.State, config NavigationManagerConfig) ([]navigation.Navigation, error)
 
 // WithNavigationGenerator configures the navigation generator function.
 func WithNavigationGenerator(fn NavigationGeneratorFunc) NavigationManagerOption {
@@ -72,12 +72,12 @@ func NewNavigationManager(config NavigationManagerConfig, options ...NavigationM
 }
 
 // Handlers returns nil.
-func (n NavigationManager) Handlers() []octant.ClientRequestHandler {
+func (n NavigationManager) Handlers() []controllers.ClientRequestHandler {
 	return nil
 }
 
 // Start starts the manager. It periodically generates navigation updates.
-func (n *NavigationManager) Start(ctx context.Context, state octant.State, s OctantClient) {
+func (n *NavigationManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
 	ch := make(chan struct{}, 1)
 	defer func() {
 		close(ch)
@@ -86,7 +86,7 @@ func (n *NavigationManager) Start(ctx context.Context, state octant.State, s Oct
 	n.poller.Run(ctx, ch, n.runUpdate(state, s), event.DefaultScheduleDelay)
 }
 
-func (n *NavigationManager) runUpdate(state octant.State, client OctantClient) PollerFunc {
+func (n *NavigationManager) runUpdate(state controllers.State, client OctantClient) PollerFunc {
 	var previous []byte
 
 	return func(ctx context.Context) bool {
@@ -117,7 +117,7 @@ func (n *NavigationManager) runUpdate(state octant.State, client OctantClient) P
 }
 
 // NavigationGenerator generates a navigation tree given a set of modules and a namespace.
-func NavigationGenerator(ctx context.Context, state octant.State, config NavigationManagerConfig) ([]navigation.Navigation, error) {
+func NavigationGenerator(ctx context.Context, state controllers.State, config NavigationManagerConfig) ([]navigation.Navigation, error) {
 	if state == nil {
 		return nil, errors.New("state is nil")
 	}
@@ -165,9 +165,9 @@ func NavigationGenerator(ctx context.Context, state octant.State, config Navigat
 }
 
 // CreateNavigationEvent creates a namespaces event.
-func CreateNavigationEvent(sections []navigation.Navigation, defaultPath string) octant.Event {
-	return octant.Event{
-		Type: octant.EventTypeNavigation,
+func CreateNavigationEvent(sections []navigation.Navigation, defaultPath string) controllers.Event {
+	return controllers.Event{
+		Type: controllers.EventTypeNavigation,
 		Data: map[string]interface{}{
 			"sections":    sections,
 			"defaultPath": defaultPath,

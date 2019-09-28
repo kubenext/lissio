@@ -16,7 +16,7 @@ import (
 	"github.com/kubenext/lissio/internal/api/fake"
 	clusterFake "github.com/kubenext/lissio/internal/cluster/fake"
 	configFake "github.com/kubenext/lissio/internal/config/fake"
-	octantFake "github.com/kubenext/lissio/internal/octant/fake"
+	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
 )
 
 func TestNamespacesManager_GenerateNamespaces(t *testing.T) {

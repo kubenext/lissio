@@ -15,10 +15,10 @@ import (
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/api/fake"
 	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/controllers"
+	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/internal/module"
 	moduleFake "github.com/kubenext/lissio/internal/module/fake"
-	"github.com/kubenext/lissio/internal/octant"
-	octantFake "github.com/kubenext/lissio/internal/octant/fake"
 	"github.com/kubenext/lissio/pkg/navigation"
 )
 
@@ -41,7 +41,7 @@ func TestNavigationManager_GenerateNavigation(t *testing.T) {
 	poller := api.NewSingleRunPoller()
 	manager := api.NewNavigationManager(dashConfig,
 		api.WithNavigationGeneratorPoller(poller),
-		api.WithNavigationGenerator(func(ctx context.Context, state octant.State, config api.NavigationManagerConfig) ([]navigation.Navigation, error) {
+		api.WithNavigationGenerator(func(ctx context.Context, state controllers.State, config api.NavigationManagerConfig) ([]navigation.Navigation, error) {
 			return sections, nil
 		}),
 	)

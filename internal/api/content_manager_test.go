@@ -14,10 +14,10 @@ import (
 
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/api/fake"
+	"github.com/kubenext/lissio/internal/controllers"
+	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/internal/log"
 	moduleFake "github.com/kubenext/lissio/internal/module/fake"
-	"github.com/kubenext/lissio/internal/octant"
-	octantFake "github.com/kubenext/lissio/internal/octant/fake"
 	"github.com/kubenext/lissio/pkg/action"
 	"github.com/kubenext/lissio/pkg/view/component"
 )
@@ -49,7 +49,7 @@ func TestContentManager_GenerateContent(t *testing.T) {
 	state.EXPECT().GetContentPath().Return("/path")
 	state.EXPECT().GetNamespace().Return("default")
 	state.EXPECT().GetQueryParams().Return(params)
-	state.EXPECT().OnContentPathUpdate(gomock.Any()).DoAndReturn(func(fn octant.ContentPathUpdateFunc) octant.UpdateCancelFunc {
+	state.EXPECT().OnContentPathUpdate(gomock.Any()).DoAndReturn(func(fn controllers.ContentPathUpdateFunc) controllers.UpdateCancelFunc {
 		fn("foo")
 		return func() {}
 	})
@@ -65,7 +65,7 @@ func TestContentManager_GenerateContent(t *testing.T) {
 
 	poller := api.NewSingleRunPoller()
 
-	contentGenerator := func(ctx context.Context, state octant.State) (component.ContentResponse, bool, error) {
+	contentGenerator := func(ctx context.Context, state controllers.State) (component.ContentResponse, bool, error) {
 		return contentResponse, false, nil
 	}
 	manager := api.NewContentManager(moduleManager, logger,
@@ -138,7 +138,7 @@ func TestContentManager_SetQueryParams(t *testing.T) {
 				},
 			},
 			setup: func(state *octantFake.MockState) {
-				state.EXPECT().SetFilters([]octant.Filter{
+				state.EXPECT().SetFilters([]controllers.Filter{
 					{Key: "foo", Value: "bar"},
 				})
 			},
@@ -154,7 +154,7 @@ func TestContentManager_SetQueryParams(t *testing.T) {
 				},
 			},
 			setup: func(state *octantFake.MockState) {
-				state.EXPECT().SetFilters([]octant.Filter{
+				state.EXPECT().SetFilters([]controllers.Filter{
 					{Key: "foo", Value: "bar"},
 					{Key: "baz", Value: "qux"},
 				})

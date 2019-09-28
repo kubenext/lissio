@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/kubenext/lissio/internal/api"
-	octantFake "github.com/kubenext/lissio/internal/octant/fake"
+	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/pkg/action"
 )
 

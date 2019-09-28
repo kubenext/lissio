@@ -13,8 +13,8 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/event"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -26,7 +26,7 @@ const (
 type ContextManagerOption func(manager *ContextManager)
 
 // ContextGenerateFunc is a function which generates a context event.
-type ContextGenerateFunc func(ctx context.Context, state octant.State) (octant.Event, error)
+type ContextGenerateFunc func(ctx context.Context, state controllers.State) (controllers.Event, error)
 
 // WithContextGenerator sets the context generator.
 func WithContextGenerator(fn ContextGenerateFunc) ContextManagerOption {
@@ -68,8 +68,8 @@ func NewContextManager(dashConfig config.Dash, options ...ContextManagerOption) 
 }
 
 // Handlers returns a slice of handlers.
-func (c *ContextManager) Handlers() []octant.ClientRequestHandler {
-	return []octant.ClientRequestHandler{
+func (c *ContextManager) Handlers() []controllers.ClientRequestHandler {
+	return []controllers.ClientRequestHandler{
 		{
 			RequestType: RequestSetContext,
 			Handler:     c.SetContext,
@@ -78,7 +78,7 @@ func (c *ContextManager) Handlers() []octant.ClientRequestHandler {
 }
 
 // SetContext sets the current context.
-func (c *ContextManager) SetContext(state octant.State, payload action.Payload) error {
+func (c *ContextManager) SetContext(state controllers.State, payload action.Payload) error {
 	requestedContext, err := payload.String("requestedContext")
 	if err != nil {
 		return errors.Wrap(err, "extract requested context from payload")
@@ -88,11 +88,11 @@ func (c *ContextManager) SetContext(state octant.State, payload action.Payload) 
 }
 
 // Start starts the manager.
-func (c *ContextManager) Start(ctx context.Context, state octant.State, s OctantClient) {
+func (c *ContextManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
 	c.poller.Run(ctx, nil, c.runUpdate(state, s), event.DefaultScheduleDelay)
 }
 
-func (c *ContextManager) runUpdate(state octant.State, s OctantClient) PollerFunc {
+func (c *ContextManager) runUpdate(state controllers.State, s OctantClient) PollerFunc {
 	var previous []byte
 
 	logger := c.dashConfig.Logger()
@@ -119,14 +119,14 @@ func (c *ContextManager) runUpdate(state octant.State, s OctantClient) PollerFun
 	}
 }
 
-func (c *ContextManager) generateContexts(ctx context.Context, state octant.State) (octant.Event, error) {
+func (c *ContextManager) generateContexts(ctx context.Context, state controllers.State) (controllers.Event, error) {
 	generator, err := c.initGenerator(state)
 	if err != nil {
-		return octant.Event{}, err
+		return controllers.Event{}, err
 	}
 	return generator.Event(ctx)
 }
 
-func (c *ContextManager) initGenerator(state octant.State) (*event.ContextsGenerator, error) {
+func (c *ContextManager) initGenerator(state controllers.State) (*event.ContextsGenerator, error) {
 	return event.NewContextsGenerator(c.dashConfig), nil
 }

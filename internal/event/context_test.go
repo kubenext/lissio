@@ -14,9 +14,9 @@ import (
 	"github.com/stretchr/testify/require"
 
 	dashConfigFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/kubeconfig"
 	"github.com/kubenext/lissio/internal/kubeconfig/fake"
-	"github.com/kubenext/lissio/internal/octant"
 )
 
 func Test_kubeContextGenerator(t *testing.T) {
@@ -48,7 +48,7 @@ func Test_kubeContextGenerator(t *testing.T) {
 	e, err := kgc.Event(ctx)
 	require.NoError(t, err)
 
-	assert.Equal(t, octant.EventTypeKubeConfig, e.Type)
+	assert.Equal(t, controllers.EventTypeKubeConfig, e.Type)
 
 	resp := kubeContextsResponse{
 		CurrentContext: kc.CurrentContext,

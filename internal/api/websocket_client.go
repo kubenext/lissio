@@ -16,8 +16,8 @@ import (
 	"golang.org/x/sync/errgroup"
 
 	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/log"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -39,15 +39,15 @@ const (
 // WebsocketClient manages websocket clients.
 type WebsocketClient struct {
 	conn       *websocket.Conn
-	send       chan octant.Event
+	send       chan controllers.Event
 	dashConfig config.Dash
 	logger     log.Logger
 	ctx        context.Context
 	cancel     context.CancelFunc
 
 	isOpen   bool
-	state    octant.State
-	handlers map[string][]octant.ClientRequestHandler
+	state    controllers.State
+	handlers map[string][]controllers.ClientRequestHandler
 	id       uuid.UUID
 }
 
@@ -64,10 +64,10 @@ func NewWebsocketClient(ctx context.Context, conn *websocket.Conn, dashConfig co
 		cancel:     cancel,
 		conn:       conn,
 		id:         id,
-		send:       make(chan octant.Event),
+		send:       make(chan controllers.Event),
 		dashConfig: dashConfig,
 		logger:     logger,
-		handlers:   make(map[string][]octant.ClientRequestHandler),
+		handlers:   make(map[string][]controllers.ClientRequestHandler),
 	}
 
 	state := NewWebsocketState(dashConfig, actionDispatcher, client)
@@ -170,7 +170,7 @@ func (c *WebsocketClient) handleUnknownRequest(request websocketRequest) error {
 		"message": message,
 		"payload": request.Payload,
 	}
-	c.Send(CreateEvent(octant.EventTypeUnknown, m))
+	c.Send(CreateEvent(controllers.EventTypeUnknown, m))
 	return nil
 }
 
@@ -228,13 +228,13 @@ func (c *WebsocketClient) writePump() {
 	}
 }
 
-func (c *WebsocketClient) Send(ev octant.Event) {
+func (c *WebsocketClient) Send(ev controllers.Event) {
 	if c.isOpen {
 		c.send <- ev
 	}
 }
 
-func (c *WebsocketClient) RegisterHandler(handler octant.ClientRequestHandler) {
+func (c *WebsocketClient) RegisterHandler(handler controllers.ClientRequestHandler) {
 	c.handlers[handler.RequestType] = append(c.handlers[handler.RequestType], handler)
 }
 
@@ -243,8 +243,8 @@ type websocketRequest struct {
 	Payload action.Payload `json:"payload"`
 }
 
-func CreateEvent(eventType octant.EventType, fields action.Payload) octant.Event {
-	return octant.Event{
+func CreateEvent(eventType controllers.EventType, fields action.Payload) controllers.Event {
+	return controllers.Event{
 		Type: eventType,
 		Data: fields,
 	}

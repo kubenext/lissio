@@ -15,12 +15,12 @@ import (
 
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/describer"
 	"github.com/kubenext/lissio/internal/gvk"
 	"github.com/kubenext/lissio/internal/link"
 	"github.com/kubenext/lissio/internal/loading"
 	"github.com/kubenext/lissio/internal/module"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/internal/printer"
 	"github.com/kubenext/lissio/internal/queryer"
 	"github.com/kubenext/lissio/pkg/action"
@@ -37,7 +37,7 @@ type Options struct {
 
 // ClusterOverview is a module for the cluster overview.
 type ClusterOverview struct {
-	*octant.ObjectPath
+	*controllers.ObjectPath
 	Options
 
 	pathMatcher *describer.PathMatcher
@@ -54,13 +54,13 @@ func New(ctx context.Context, options Options) (*ClusterOverview, error) {
 		pathMatcher.Register(ctx, pf)
 	}
 
-	objectPathConfig := octant.ObjectPathConfig{
+	objectPathConfig := controllers.ObjectPathConfig{
 		ModuleName:     "cluster-overview",
 		SupportedGVKs:  supportedGVKs,
 		PathLookupFunc: gvkPath,
 		CRDPathGenFunc: crdPath,
 	}
-	objectPath, err := octant.NewObjectPath(objectPathConfig)
+	objectPath, err := controllers.NewObjectPath(objectPathConfig)
 	if err != nil {
 		return nil, errors.Wrap(err, "create module object path generator")
 	}
@@ -119,12 +119,12 @@ func (co *ClusterOverview) Name() string {
 	return "cluster-overview"
 }
 
-func (co *ClusterOverview) ClientRequestHandlers() []octant.ClientRequestHandler {
-	return []octant.ClientRequestHandler{
+func (co *ClusterOverview) ClientRequestHandlers() []controllers.ClientRequestHandler {
+	return []controllers.ClientRequestHandler{
 		// TODO: move to overview
 		{
 			RequestType: "startPortForward",
-			Handler: func(state octant.State, payload action.Payload) error {
+			Handler: func(state controllers.State, payload action.Payload) error {
 				req, err := portForwardRequestFromPayload(payload)
 				if err != nil {
 					return errors.Wrap(err, "convert payload to port forward request")
@@ -136,7 +136,7 @@ func (co *ClusterOverview) ClientRequestHandlers() []octant.ClientRequestHandler
 		},
 		{
 			RequestType: "stopPortForward",
-			Handler: func(state octant.State, payload action.Payload) error {
+			Handler: func(state controllers.State, payload action.Payload) error {
 				id, err := payload.String("id")
 				if err != nil {
 					return errors.Wrap(err, "get port forward id from payload")
@@ -205,14 +205,14 @@ func (co *ClusterOverview) ContentPath() string {
 }
 
 func (co *ClusterOverview) Navigation(ctx context.Context, namespace string, root string) ([]navigation.Navigation, error) {
-	navigationEntries := octant.NavigationEntries{
+	navigationEntries := controllers.NavigationEntries{
 		Lookup: map[string]string{
 			"Custom Resources": "custom-resources",
 			"RBAC":             "rbac",
 			"Nodes":            "nodes",
 			"Port Forwards":    "port-forward",
 		},
-		EntriesFuncs: map[string]octant.EntriesFunc{
+		EntriesFuncs: map[string]controllers.EntriesFunc{
 			"Custom Resources": navigation.CRDEntries,
 			"RBAC":             rbacEntries,
 			"Nodes":            nil,
@@ -228,7 +228,7 @@ func (co *ClusterOverview) Navigation(ctx context.Context, namespace string, roo
 
 	objectStore := co.DashConfig.ObjectStore()
 
-	nf := octant.NewNavigationFactory("", root, objectStore, navigationEntries)
+	nf := controllers.NewNavigationFactory("", root, objectStore, navigationEntries)
 
 	entries, err := nf.Generate(ctx, "Cluster Overview", icon.ClusterOverview, "", true)
 	if err != nil {
@@ -252,8 +252,8 @@ func (co *ClusterOverview) Stop() {
 }
 
 // Generators allow modules to send events to the frontend.
-func (co *ClusterOverview) Generators() []octant.Generator {
-	return []octant.Generator{}
+func (co *ClusterOverview) Generators() []controllers.Generator {
+	return []controllers.Generator{}
 }
 
 func rbacEntries(ctx context.Context, prefix, namespace string, objectStore store.Store, _ bool) ([]navigation.Navigation, bool, error) {

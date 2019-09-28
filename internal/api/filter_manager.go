@@ -14,7 +14,7 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/labels"
 
-	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -36,12 +36,12 @@ func NewFilterManager() *FilterManager {
 }
 
 // Start starts the manager. Current is a no-op.
-func (fm *FilterManager) Start(ctx context.Context, state octant.State, s OctantClient) {
+func (fm *FilterManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
 }
 
 // Handlers returns a slice of handlers.
-func (fm *FilterManager) Handlers() []octant.ClientRequestHandler {
-	return []octant.ClientRequestHandler{
+func (fm *FilterManager) Handlers() []controllers.ClientRequestHandler {
+	return []controllers.ClientRequestHandler{
 		{
 			RequestType: RequestAddFilter,
 			Handler:     fm.AddFilter,
@@ -58,7 +58,7 @@ func (fm *FilterManager) Handlers() []octant.ClientRequestHandler {
 }
 
 // AddFilter adds a filter.
-func (fm *FilterManager) AddFilter(state octant.State, payload action.Payload) error {
+func (fm *FilterManager) AddFilter(state controllers.State, payload action.Payload) error {
 	if filter, ok := FilterFromPayload(payload); ok {
 		state.AddFilter(filter)
 		message := fmt.Sprintf("Added filter for label %s", filter.String())
@@ -69,15 +69,15 @@ func (fm *FilterManager) AddFilter(state octant.State, payload action.Payload) e
 }
 
 // ClearFilters clears all filters.
-func (fm *FilterManager) ClearFilters(state octant.State, payload action.Payload) error {
-	state.SetFilters([]octant.Filter{})
+func (fm *FilterManager) ClearFilters(state controllers.State, payload action.Payload) error {
+	state.SetFilters([]controllers.Filter{})
 	message := "Cleared filters"
 	state.SendAlert(action.CreateAlert(action.AlertTypeInfo, message, action.DefaultAlertExpiration))
 	return nil
 }
 
 // RemoveFilters removes a filter.
-func (fm *FilterManager) RemoveFilter(state octant.State, payload action.Payload) error {
+func (fm *FilterManager) RemoveFilter(state controllers.State, payload action.Payload) error {
 	if filter, ok := FilterFromPayload(payload); ok {
 		state.RemoveFilter(filter)
 		message := fmt.Sprintf("Removed filter for label %s", filter.String())
@@ -88,23 +88,23 @@ func (fm *FilterManager) RemoveFilter(state octant.State, payload action.Payload
 
 // FilterFromPayload creates a filter from a payload. Returns false
 // if the payload is invalid.
-func FilterFromPayload(in action.Payload) (octant.Filter, bool) {
+func FilterFromPayload(in action.Payload) (controllers.Filter, bool) {
 	filters, found, err := unstructured.NestedMap(in, "filter")
 	if err != nil || !found {
-		return octant.Filter{}, false
+		return controllers.Filter{}, false
 	}
 
 	key, found, err := unstructured.NestedString(filters, "key")
 	if err != nil || !found {
-		return octant.Filter{}, false
+		return controllers.Filter{}, false
 	}
 
 	value, found, err := unstructured.NestedString(filters, "value")
 	if err != nil || !found {
-		return octant.Filter{}, false
+		return controllers.Filter{}, false
 	}
 
-	return octant.Filter{
+	return controllers.Filter{
 		Key:   key,
 		Value: value,
 	}, true
@@ -112,8 +112,8 @@ func FilterFromPayload(in action.Payload) (octant.Filter, bool) {
 
 // FiltersFromQueryParams converts query params to filters. Can handle
 // one or multiple query params.
-func FiltersFromQueryParams(in interface{}) ([]octant.Filter, error) {
-	var filters []octant.Filter
+func FiltersFromQueryParams(in interface{}) ([]controllers.Filter, error) {
+	var filters []controllers.Filter
 
 	switch t := in.(type) {
 	case []interface{}:
@@ -140,20 +140,20 @@ func FiltersFromQueryParams(in interface{}) ([]octant.Filter, error) {
 }
 
 // ParseFilterQueryParam parsers a single filter from a query param in the format `key:value`.
-func ParseFilterQueryParam(in string) (octant.Filter, error) {
+func ParseFilterQueryParam(in string) (controllers.Filter, error) {
 	parts := strings.Split(in, ":")
 	if len(parts) != 2 {
-		return octant.Filter{}, errors.Errorf("invalid filter parameter %s", in)
+		return controllers.Filter{}, errors.Errorf("invalid filter parameter %s", in)
 	}
 
-	return octant.Filter{
+	return controllers.Filter{
 		Key:   parts[0],
 		Value: parts[1],
 	}, nil
 }
 
 // FiltersToLabelSet converts a slice of filters to a label set.
-func FiltersToLabelSet(filters []octant.Filter) *labels.Set {
+func FiltersToLabelSet(filters []controllers.Filter) *labels.Set {
 	set := labels.Set{}
 	for i := range filters {
 		set[filters[i].Key] = filters[i].Value

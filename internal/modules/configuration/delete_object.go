@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/log"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/action"
 	"github.com/kubenext/lissio/pkg/store"
 )
@@ -17,13 +17,13 @@ type ObjectDeleter struct {
 
 func NewObjectDeleter(logger log.Logger, clusterClient store.Store) *ObjectDeleter {
 	return &ObjectDeleter{
-		logger: logger.With("action", octant.ActionDeleteObject),
+		logger: logger.With("action", controllers.ActionDeleteObject),
 		store:  clusterClient,
 	}
 }
 
 func (d *ObjectDeleter) ActionName() string {
-	return octant.ActionDeleteObject
+	return controllers.ActionDeleteObject
 }
 
 func (d *ObjectDeleter) Handle(ctx context.Context, alerter action.Alerter, payload action.Payload) error {

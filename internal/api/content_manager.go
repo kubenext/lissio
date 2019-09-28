@@ -12,10 +12,10 @@ import (
 
 	"github.com/pkg/errors"
 
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/event"
 	"github.com/kubenext/lissio/internal/log"
 	"github.com/kubenext/lissio/internal/module"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/action"
 	"github.com/kubenext/lissio/pkg/view/component"
 )
@@ -30,7 +30,7 @@ type ContentManagerOption func(manager *ContentManager)
 
 // ContentGenerateFunc is a function that generates content. It returns `rerun=true`
 // if the action should be be immediately rerun.
-type ContentGenerateFunc func(ctx context.Context, state octant.State) (component.ContentResponse, bool, error)
+type ContentGenerateFunc func(ctx context.Context, state controllers.State) (component.ContentResponse, bool, error)
 
 // WithContentGenerator configures the content generate function.
 func WithContentGenerator(fn ContentGenerateFunc) ContentManagerOption {
@@ -75,7 +75,7 @@ func NewContentManager(moduleManager module.ManagerInterface, logger log.Logger,
 var _ StateManager = (*ContentManager)(nil)
 
 // Start starts the manager.
-func (cm *ContentManager) Start(ctx context.Context, state octant.State, s OctantClient) {
+func (cm *ContentManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
 	defer func() {
 		close(cm.updateContentCh)
 	}()
@@ -88,7 +88,7 @@ func (cm *ContentManager) Start(ctx context.Context, state octant.State, s Octan
 	cm.poller.Run(ctx, cm.updateContentCh, cm.runUpdate(state, s), event.DefaultScheduleDelay)
 }
 
-func (cm *ContentManager) runUpdate(state octant.State, s OctantClient) PollerFunc {
+func (cm *ContentManager) runUpdate(state controllers.State, s OctantClient) PollerFunc {
 	return func(ctx context.Context) bool {
 		contentPath := state.GetContentPath()
 		if contentPath == "" {
@@ -108,7 +108,7 @@ func (cm *ContentManager) runUpdate(state octant.State, s OctantClient) PollerFu
 	}
 }
 
-func (cm *ContentManager) generateContent(ctx context.Context, state octant.State) (component.ContentResponse, bool, error) {
+func (cm *ContentManager) generateContent(ctx context.Context, state controllers.State) (component.ContentResponse, bool, error) {
 	contentPath := state.GetContentPath()
 	logger := cm.logger.With("contentPath", contentPath)
 
@@ -140,8 +140,8 @@ func (cm *ContentManager) generateContent(ctx context.Context, state octant.Stat
 }
 
 // Handlers returns a slice of client request handlers.
-func (cm *ContentManager) Handlers() []octant.ClientRequestHandler {
-	return []octant.ClientRequestHandler{
+func (cm *ContentManager) Handlers() []controllers.ClientRequestHandler {
+	return []controllers.ClientRequestHandler{
 		{
 			RequestType: RequestSetContentPath,
 			Handler:     cm.SetContentPath,
@@ -154,7 +154,7 @@ func (cm *ContentManager) Handlers() []octant.ClientRequestHandler {
 }
 
 // SetQueryParams sets the current query params.
-func (cm *ContentManager) SetQueryParams(state octant.State, payload action.Payload) error {
+func (cm *ContentManager) SetQueryParams(state controllers.State, payload action.Payload) error {
 	if params, ok := payload["params"].(map[string]interface{}); ok {
 		// handle filters
 		if filters, ok := params["filters"]; ok {
@@ -170,7 +170,7 @@ func (cm *ContentManager) SetQueryParams(state octant.State, payload action.Payl
 }
 
 // SetNamespace sets the current namespace.
-func (cm *ContentManager) SetNamespace(state octant.State, payload action.Payload) error {
+func (cm *ContentManager) SetNamespace(state controllers.State, payload action.Payload) error {
 	namespace, err := payload.String("namespace")
 	if err != nil {
 		return errors.Wrap(err, "extract namespace from payload")
@@ -180,7 +180,7 @@ func (cm *ContentManager) SetNamespace(state octant.State, payload action.Payloa
 }
 
 // SetContentPath sets the current content path.
-func (cm *ContentManager) SetContentPath(state octant.State, payload action.Payload) error {
+func (cm *ContentManager) SetContentPath(state controllers.State, payload action.Payload) error {
 	contentPath, err := payload.String("contentPath")
 	if err != nil {
 		return errors.Wrap(err, "extract contentPath from payload")
@@ -199,9 +199,9 @@ type notFound interface {
 }
 
 // CreateContentEvent creates a content event.
-func CreateContentEvent(contentResponse component.ContentResponse, namespace, contentPath string, queryParams map[string][]string) octant.Event {
-	return octant.Event{
-		Type: octant.EventTypeContent,
+func CreateContentEvent(contentResponse component.ContentResponse, namespace, contentPath string, queryParams map[string][]string) controllers.Event {
+	return controllers.Event{
+		Type: controllers.EventTypeContent,
 		Data: map[string]interface{}{
 			"content":     contentResponse,
 			"namespace":   namespace,

@@ -18,9 +18,9 @@ import (
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/api/fake"
 	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/log"
 	moduleFake "github.com/kubenext/lissio/internal/module/fake"
-	"github.com/kubenext/lissio/internal/octant"
 )
 
 func TestWebsocketState_Start(t *testing.T) {
@@ -29,7 +29,7 @@ func TestWebsocketState_Start(t *testing.T) {
 
 	started := make(chan bool, 1)
 	mocks.stateManager.EXPECT().Start(gomock.Any(), gomock.Any(), gomock.Any()).
-		DoAndReturn(func(ctx context.Context, state octant.State, wsClient api.OctantClient) {
+		DoAndReturn(func(ctx context.Context, state controllers.State, wsClient api.OctantClient) {
 			started <- true
 		})
 	s := mocks.factory()
@@ -239,14 +239,14 @@ func TestWebsocketState_AddFilter(t *testing.T) {
 	defer mocks.finish()
 	s := mocks.factory()
 
-	s.AddFilter(octant.Filter{
+	s.AddFilter(controllers.Filter{
 		Key:   "key",
 		Value: "value",
 	})
 
 	got := s.GetFilters()
 
-	expected := []octant.Filter{
+	expected := []controllers.Filter{
 		{Key: "key", Value: "value"},
 	}
 	assert.Equal(t, expected, got)

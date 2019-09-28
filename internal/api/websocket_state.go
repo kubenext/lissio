@@ -17,7 +17,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/kubenext/lissio/internal/config"
-	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -30,8 +30,8 @@ var (
 
 // StateManager manages states for WebsocketState.
 type StateManager interface {
-	Handlers() []octant.ClientRequestHandler
-	Start(ctx context.Context, state octant.State, s OctantClient)
+	Handlers() []controllers.ClientRequestHandler
+	Start(ctx context.Context, state controllers.State, s OctantClient)
 }
 
 func defaultStateManagers(clientID string, dashConfig config.Dash) []StateManager {
@@ -49,7 +49,7 @@ func defaultStateManagers(clientID string, dashConfig config.Dash) []StateManage
 
 // OctantClient is an OctantClient.
 type OctantClient interface {
-	Send(event octant.Event)
+	Send(event controllers.Event)
 	ID() string
 }
 
@@ -95,9 +95,9 @@ type WebsocketState struct {
 	wsClient           OctantClient
 	contentPath        *atomicString
 	namespace          *atomicString
-	filters            []octant.Filter
-	contentPathUpdates map[string]octant.ContentPathUpdateFunc
-	namespaceUpdates   map[string]octant.NamespaceUpdateFunc
+	filters            []controllers.Filter
+	contentPathUpdates map[string]controllers.ContentPathUpdateFunc
+	namespaceUpdates   map[string]controllers.NamespaceUpdateFunc
 
 	mu               sync.RWMutex
 	managers         []StateManager
@@ -107,7 +107,7 @@ type WebsocketState struct {
 	managersCancelFunc context.CancelFunc
 }
 
-var _ octant.State = (*WebsocketState)(nil)
+var _ controllers.State = (*WebsocketState)(nil)
 
 // NewWebsocketState creates an instance of WebsocketState.
 func NewWebsocketState(dashConfig config.Dash, actionDispatcher ActionDispatcher, wsClient OctantClient, options ...WebsocketStateOption) *WebsocketState {
@@ -116,11 +116,11 @@ func NewWebsocketState(dashConfig config.Dash, actionDispatcher ActionDispatcher
 	w := &WebsocketState{
 		dashConfig:         dashConfig,
 		wsClient:           wsClient,
-		contentPathUpdates: make(map[string]octant.ContentPathUpdateFunc),
-		namespaceUpdates:   make(map[string]octant.NamespaceUpdateFunc),
+		contentPathUpdates: make(map[string]controllers.ContentPathUpdateFunc),
+		namespaceUpdates:   make(map[string]controllers.NamespaceUpdateFunc),
 		namespace:          newStringValue(defaultNamespace),
 		contentPath:        newStringValue(""),
-		filters:            make([]octant.Filter, 0),
+		filters:            make([]controllers.Filter, 0),
 		actionDispatcher:   actionDispatcher,
 	}
 
@@ -143,8 +143,8 @@ func (c *WebsocketState) Start(ctx context.Context) {
 }
 
 // Handlers returns all the handlers for WebsocketState.
-func (c *WebsocketState) Handlers() []octant.ClientRequestHandler {
-	var handlers []octant.ClientRequestHandler
+func (c *WebsocketState) Handlers() []controllers.ClientRequestHandler {
+	var handlers []controllers.ClientRequestHandler
 
 	for _, manager := range c.managers {
 		handlers = append(handlers, manager.Handlers()...)
@@ -206,7 +206,7 @@ func (c *WebsocketState) GetContentPath() string {
 }
 
 // OnContentPathUpdate registers a function that will be called when the content path changes.
-func (c *WebsocketState) OnContentPathUpdate(fn octant.ContentPathUpdateFunc) octant.UpdateCancelFunc {
+func (c *WebsocketState) OnContentPathUpdate(fn controllers.ContentPathUpdateFunc) controllers.UpdateCancelFunc {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
@@ -250,7 +250,7 @@ func (c *WebsocketState) GetNamespace() string {
 }
 
 // OnNamespaceUpdate registers a function that will be run when the namespace changes.
-func (c *WebsocketState) OnNamespaceUpdate(fn octant.NamespaceUpdateFunc) octant.UpdateCancelFunc {
+func (c *WebsocketState) OnNamespaceUpdate(fn controllers.NamespaceUpdateFunc) controllers.UpdateCancelFunc {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
@@ -267,7 +267,7 @@ func (c *WebsocketState) OnNamespaceUpdate(fn octant.NamespaceUpdateFunc) octant
 }
 
 // AddFilter adds a content filter.
-func (c *WebsocketState) AddFilter(filter octant.Filter) {
+func (c *WebsocketState) AddFilter(filter controllers.Filter) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
@@ -281,11 +281,11 @@ func (c *WebsocketState) AddFilter(filter octant.Filter) {
 }
 
 // RemoveFilter removes a content filter.
-func (c *WebsocketState) RemoveFilter(filter octant.Filter) {
+func (c *WebsocketState) RemoveFilter(filter controllers.Filter) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
-	var newFilters []octant.Filter
+	var newFilters []controllers.Filter
 
 	for i := range c.filters {
 		if c.filters[i].IsEqual(filter) {
@@ -298,8 +298,8 @@ func (c *WebsocketState) RemoveFilter(filter octant.Filter) {
 }
 
 // GetFilters returns all filters.
-func (c *WebsocketState) GetFilters() []octant.Filter {
-	filters := make([]octant.Filter, len(c.filters))
+func (c *WebsocketState) GetFilters() []controllers.Filter {
+	filters := make([]controllers.Filter, len(c.filters))
 	copy(filters, c.filters)
 
 	sort.Slice(filters, func(i, j int) bool {
@@ -309,7 +309,7 @@ func (c *WebsocketState) GetFilters() []octant.Filter {
 	return filters
 }
 
-func (c *WebsocketState) SetFilters(filters []octant.Filter) {
+func (c *WebsocketState) SetFilters(filters []controllers.Filter) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 
@@ -372,9 +372,9 @@ func updateContentPathNamespace(in, namespace string) string {
 }
 
 // CreateFiltersUpdate creates a filters update event.
-func CreateFiltersUpdate(filters []octant.Filter) octant.Event {
+func CreateFiltersUpdate(filters []controllers.Filter) controllers.Event {
 	if filters == nil {
-		filters = make([]octant.Filter, 0)
+		filters = make([]controllers.Filter, 0)
 	}
 	return CreateEvent("filters", action.Payload{
 		"filters": filters,
@@ -382,8 +382,8 @@ func CreateFiltersUpdate(filters []octant.Filter) octant.Event {
 }
 
 // CreateAlertUpdate creates an alert update event.
-func CreateAlertUpdate(alert action.Alert) octant.Event {
-	return CreateEvent(octant.EventTypeAlert, action.Payload{
+func CreateAlertUpdate(alert action.Alert) controllers.Event {
+	return CreateEvent(controllers.EventTypeAlert, action.Payload{
 		"type":       alert.Type,
 		"message":    alert.Message,
 		"expiration": alert.Expiration,

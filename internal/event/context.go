@@ -13,8 +13,8 @@ import (
 	"github.com/pkg/errors"
 
 	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/kubeconfig"
-	"github.com/kubenext/lissio/internal/octant"
 )
 
 // kubeContextsResponse is a response for current kube contexts.
@@ -31,7 +31,7 @@ type ContextsGenerator struct {
 	DashConfig   config.Dash
 }
 
-var _ octant.Generator = (*ContextsGenerator)(nil)
+var _ controllers.Generator = (*ContextsGenerator)(nil)
 
 func NewContextsGenerator(dashConfig config.Dash, options ...ContextGeneratorOption) *ContextsGenerator {
 	kcg := &ContextsGenerator{
@@ -46,12 +46,12 @@ func NewContextsGenerator(dashConfig config.Dash, options ...ContextGeneratorOpt
 	return kcg
 }
 
-func (g *ContextsGenerator) Event(ctx context.Context) (octant.Event, error) {
+func (g *ContextsGenerator) Event(ctx context.Context) (controllers.Event, error) {
 	configPath := g.DashConfig.KubeConfigPath()
 
 	kubeConfig, err := g.ConfigLoader.Load(configPath)
 	if err != nil {
-		return octant.Event{}, errors.Wrap(err, "unable to load kube config")
+		return controllers.Event{}, errors.Wrap(err, "unable to load kube config")
 	}
 
 	currentContext := g.DashConfig.ContextName()
@@ -68,8 +68,8 @@ func (g *ContextsGenerator) Event(ctx context.Context) (octant.Event, error) {
 		return resp.Contexts[i].Name < resp.Contexts[j].Name
 	})
 
-	e := octant.Event{
-		Type: octant.EventTypeKubeConfig,
+	e := controllers.Event{
+		Type: controllers.EventTypeKubeConfig,
 		Data: resp,
 	}
 

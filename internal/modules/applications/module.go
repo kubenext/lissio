@@ -15,10 +15,10 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/describer"
 	"github.com/kubenext/lissio/internal/generator"
 	"github.com/kubenext/lissio/internal/module"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/navigation"
 	"github.com/kubenext/lissio/pkg/view/component"
 )
@@ -60,7 +60,7 @@ func (m Module) Name() string {
 }
 
 // ClientRequestHandlers are client handlers for the module.
-func (m Module) ClientRequestHandlers() []octant.ClientRequestHandler {
+func (m Module) ClientRequestHandlers() []controllers.ClientRequestHandler {
 	return nil
 }
 
@@ -125,7 +125,7 @@ func (m Module) SetContext(ctx context.Context, contextName string) error {
 }
 
 // Generators does nothing.
-func (m Module) Generators() []octant.Generator {
+func (m Module) Generators() []controllers.Generator {
 	return nil
 }
 

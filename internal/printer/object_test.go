@@ -15,7 +15,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/pkg/action"
 	"github.com/kubenext/lissio/pkg/plugin/fake"
 	"github.com/kubenext/lissio/pkg/store"
@@ -274,7 +274,7 @@ func Test_Object_ToComponent(t *testing.T) {
 
 			buttonGroup.AddButton(
 				component.NewButton("Delete",
-					action.CreatePayload(octant.ActionDeleteObject, key.ToActionPayload()),
+					action.CreatePayload(controllers.ActionDeleteObject, key.ToActionPayload()),
 					component.WithButtonConfirmation(
 						"Delete Deployment",
 						"Are you sure you want to delete *Deployment* **deployment**? This action is permanent and cannot be recovered.",

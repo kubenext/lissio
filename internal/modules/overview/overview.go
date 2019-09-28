@@ -17,11 +17,11 @@ import (
 
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/internal/describer"
 	"github.com/kubenext/lissio/internal/generator"
 	"github.com/kubenext/lissio/internal/log"
 	"github.com/kubenext/lissio/internal/module"
-	"github.com/kubenext/lissio/internal/octant"
 	"github.com/kubenext/lissio/pkg/action"
 	"github.com/kubenext/lissio/pkg/icon"
 	"github.com/kubenext/lissio/pkg/navigation"
@@ -36,7 +36,7 @@ type Options struct {
 
 // Overview is an API for generating a cluster overview.
 type Overview struct {
-	*octant.ObjectPath
+	*controllers.ObjectPath
 
 	generator   generator.Interface
 	dashConfig  config.Dash
@@ -115,13 +115,13 @@ func (co *Overview) bootstrap(ctx context.Context) error {
 		return errors.Wrap(err, "create overview generator")
 	}
 
-	objectPathConfig := octant.ObjectPathConfig{
+	objectPathConfig := controllers.ObjectPathConfig{
 		ModuleName:     "overview",
 		SupportedGVKs:  supportedGVKs,
 		PathLookupFunc: gvkPath,
 		CRDPathGenFunc: crdPath,
 	}
-	objectPath, err := octant.NewObjectPath(objectPathConfig)
+	objectPath, err := controllers.NewObjectPath(objectPathConfig)
 	if err != nil {
 		return errors.Wrap(err, "create module object path generator")
 	}
@@ -184,7 +184,7 @@ func (co *Overview) Name() string {
 	return "overview"
 }
 
-func (co *Overview) ClientRequestHandlers() []octant.ClientRequestHandler {
+func (co *Overview) ClientRequestHandlers() []controllers.ClientRequestHandler {
 	return nil
 }
 
@@ -195,9 +195,9 @@ func (co *Overview) ContentPath() string {
 
 // Navigation returns navigation entries for overview.
 func (co *Overview) Navigation(ctx context.Context, namespace, root string) ([]navigation.Navigation, error) {
-	navigationEntries := octant.NavigationEntries{
+	navigationEntries := controllers.NavigationEntries{
 		Lookup: navPathLookup,
-		EntriesFuncs: map[string]octant.EntriesFunc{
+		EntriesFuncs: map[string]controllers.EntriesFunc{
 			"Workloads":                    workloadEntries,
 			"Discovery and Load Balancing": discoAndLBEntries,
 			"Config and Storage":           configAndStorageEntries,
@@ -217,7 +217,7 @@ func (co *Overview) Navigation(ctx context.Context, namespace, root string) ([]n
 
 	objectStore := co.dashConfig.ObjectStore()
 
-	nf := octant.NewNavigationFactory(namespace, root, objectStore, navigationEntries)
+	nf := controllers.NewNavigationFactory(namespace, root, objectStore, navigationEntries)
 
 	entries, err := nf.Generate(ctx, "Overview", icon.Overview, "", false)
 	if err != nil {
@@ -230,8 +230,8 @@ func (co *Overview) Navigation(ctx context.Context, namespace, root string) ([]n
 }
 
 // Generators allow modules to send events to the frontend.
-func (co *Overview) Generators() []octant.Generator {
-	return []octant.Generator{}
+func (co *Overview) Generators() []controllers.Generator {
+	return []controllers.Generator{}
 }
 
 // SetNamespace sets the current namespace.
@@ -327,9 +327,9 @@ func (co *Overview) portForwardHandler() http.HandlerFunc {
 // ActionPaths contain the actions this module is responsible for.
 func (co *Overview) ActionPaths() map[string]action.DispatcherFunc {
 	dispatchers := action.Dispatchers{
-		octant.NewDeploymentConfigurationEditor(co.logger, co.dashConfig.ObjectStore()),
-		octant.NewContainerEditor(co.dashConfig.ObjectStore()),
-		octant.NewServiceConfigurationEditor(co.dashConfig.ObjectStore()),
+		controllers.NewDeploymentConfigurationEditor(co.logger, co.dashConfig.ObjectStore()),
+		controllers.NewContainerEditor(co.dashConfig.ObjectStore()),
+		controllers.NewServiceConfigurationEditor(co.dashConfig.ObjectStore()),
 	}
 
 	return dispatchers.ToActionPaths()

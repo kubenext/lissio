@@ -15,7 +15,7 @@ import (
 	"k8s.io/apimachinery/pkg/api/meta"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/pkg/action"
 	"github.com/kubenext/lissio/pkg/store"
 	"github.com/kubenext/lissio/pkg/view/component"
@@ -229,7 +229,7 @@ func (o *Object) ToComponent(ctx context.Context, options Options) (component.Co
 			return nil, errors.Wrap(err, "create delete confirmation")
 		}
 
-		o.AddButton("Delete", action.CreatePayload(octant.ActionDeleteObject,
+		o.AddButton("Delete", action.CreatePayload(controllers.ActionDeleteObject,
 			key.ToActionPayload()), confirmation)
 	}
 

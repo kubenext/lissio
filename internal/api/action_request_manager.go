@@ -8,7 +8,7 @@ package api
 import (
 	"context"
 
-	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/internal/controllers"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -28,12 +28,12 @@ func NewActionRequestManager() *ActionRequestManager {
 	return &ActionRequestManager{}
 }
 
-func (a ActionRequestManager) Start(ctx context.Context, state octant.State, s OctantClient) {
+func (a ActionRequestManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
 }
 
 // Handlers returns the handlers this manager supports.
-func (a *ActionRequestManager) Handlers() []octant.ClientRequestHandler {
-	return []octant.ClientRequestHandler{
+func (a *ActionRequestManager) Handlers() []controllers.ClientRequestHandler {
+	return []controllers.ClientRequestHandler{
 		{
 			RequestType: RequestPerformAction,
 			Handler:     a.PerformAction,
@@ -42,7 +42,7 @@ func (a *ActionRequestManager) Handlers() []octant.ClientRequestHandler {
 }
 
 // PerformAction is a handler than runs an action.
-func (a *ActionRequestManager) PerformAction(state octant.State, payload action.Payload) error {
+func (a *ActionRequestManager) PerformAction(state controllers.State, payload action.Payload) error {
 	ctx := context.TODO()
 
 	actionName, err := payload.String("action")

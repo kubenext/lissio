@@ -14,9 +14,9 @@ import (
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/api/fake"
 	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/controllers"
+	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/internal/log"
-	"github.com/kubenext/lissio/internal/octant"
-	octantFake "github.com/kubenext/lissio/internal/octant/fake"
 )
 
 func TestContextManager_Handlers(t *testing.T) {
@@ -36,7 +36,7 @@ func TestContext_GenerateContexts(t *testing.T) {
 	state := octantFake.NewMockState(controller)
 	octantClient := fake.NewMockOctantClient(controller)
 
-	ev := octant.Event{
+	ev := controllers.Event{
 		Type: "eventType",
 	}
 	octantClient.EXPECT().Send(ev)
@@ -47,7 +47,7 @@ func TestContext_GenerateContexts(t *testing.T) {
 	dashConfig.EXPECT().Logger().Return(logger).AnyTimes()
 
 	poller := api.NewSingleRunPoller()
-	generatorFunc := func(ctx context.Context, state octant.State) (octant.Event, error) {
+	generatorFunc := func(ctx context.Context, state controllers.State) (controllers.Event, error) {
 		return ev, nil
 	}
 	manager := api.NewContextManager(dashConfig,
