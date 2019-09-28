@@ -44,7 +44,7 @@ func rebindHandler(ctx context.Context, acceptedHosts []string) mux.MiddlewareFu
 
 			if !shouldAllowHost(host, acceptedHosts) {
 				logger := log.From(ctx)
-				logger.Debugf("Requester %s not in accepted hosts: %s\nTo allow this host add it to the OCTANT_ACCEPTED_HOSTS environment variable.", host, acceptedHosts)
+				logger.Debugf("Requester %s not in accepted hosts: %s\nTo allow this host add it to the LISSIO_ACCEPTED_HOSTS environment variable.", host, acceptedHosts)
 				http.Error(w, "forbidden", http.StatusForbidden)
 				return
 			}

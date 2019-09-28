@@ -15,7 +15,7 @@
 ### Bug Fixes
   * Fixed cluster or namespaced scoped CRDs sometimes not showing up (#146, @bryanl)
   * Fixed sample installation Makefile target (#151, @alexmt)
-  * Fixed bug causing octant to 403 when setting `OCTANT_LISTENER_ADDR` (#152, @wwitzel3)
+  * Fixed bug causing octant to 403 when setting `LISSIO_LISTENER_ADDR` (#152, @wwitzel3)
   * Fixed scroll getting stuck when viewing container logs (#162, @nfarruggiagl)
   * Fixed intial set namespace flag by respecting initial URL routing (#165, @GuessWhoSamFoo)
   * Fixed bug where switching clusters with CRDs loaded causes octant to crash (#170, @bryanl)

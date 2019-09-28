@@ -161,7 +161,7 @@ func Run(ctx context.Context, logger log.Logger, shutdownCh chan bool, options O
 	listener, err := buildListener()
 	if err != nil {
 		err = errors.Wrap(err, "failed to create net listener")
-		return errors.Wrap(err, "use OCTANT_LISTENER_ADDR to set host:port")
+		return errors.Wrap(err, "use LISSIO_LISTENER_ADDR to set host:port")
 	}
 
 	// Initialize the API
@@ -173,7 +173,7 @@ func Run(ctx context.Context, logger log.Logger, shutdownCh chan bool, options O
 		return errors.Wrap(err, "failed to create dash instance")
 	}
 
-	if os.Getenv("OCTANT_DISABLE_OPEN_BROWSER") != "" {
+	if os.Getenv("LISSIO_DISABLE_OPEN_BROWSER") != "" {
 		d.willOpenBrowser = false
 	}
 
@@ -229,7 +229,7 @@ type moduleOptions struct {
 func initModules(ctx context.Context, dashConfig config.Dash, namespace string) ([]module.Module, error) {
 	var list []module.Module
 
-	if os.Getenv("OCTANT_ENABLE_APPLICATIONS") != "" {
+	if os.Getenv("LISSIO_ENABLE_APPLICATIONS") != "" {
 		applicationsOptions := applications.Options{
 			DashConfig: dashConfig,
 		}
@@ -266,7 +266,7 @@ func initModules(ctx context.Context, dashConfig config.Dash, namespace string) 
 
 	list = append(list, configurationModule)
 
-	localContentPath := os.Getenv("OCTANT_LOCAL_CONTENT")
+	localContentPath := os.Getenv("LISSIO_LOCAL_CONTENT")
 	if localContentPath != "" {
 		localContentModule := localcontent.New(localContentPath)
 		list = append(list, localContentModule)
@@ -352,7 +352,7 @@ func (d *dash) Run(ctx context.Context) error {
 // handler configures primary http routes
 func (d *dash) handler(ctx context.Context) (http.Handler, error) {
 	var frontendHandler http.Handler
-	frontendPath := os.Getenv("OCTANT_PROXY_FRONTEND")
+	frontendPath := os.Getenv("LISSIO_PROXY_FRONTEND")
 	if frontendPath == "" {
 		d.logger.Infof("Using embedded Octant frontend")
 		// use embedded assets

@@ -6,8 +6,8 @@ SPDX-License-Identifier: Apache-2.0
 package api
 
 import (
-	"fmt"
 	"context"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -42,7 +42,7 @@ func Test_rebindHandler(t *testing.T) {
 			name:         "custom host",
 			host:         "0.0.0.0",
 			expectedCode: http.StatusOK,
-			listenerKey:  "OCTANT_LISTENER_ADDR",
+			listenerKey:  "LISSIO_LISTENER_ADDR",
 			listenerAddr: "0.0.0.0:0000",
 		},
 	}

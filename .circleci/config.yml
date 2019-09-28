@@ -3,7 +3,7 @@ jobs:
   build:
     machine:
       enabled: true
-      docker_layer_caching: true 
+      docker_layer_caching: true
     steps:
     - checkout
     - run:
@@ -45,9 +45,9 @@ jobs:
           ./octant version
           ./octant
         environment:
-          OCTANT_PLUGIN_PATH: ./plugin_path
-          OCTANT_DISABLE_OPEN_BROWSER: 1
-          OCTANT_LISTENER_ADDR: localhost:7777
+          LISSIO_PLUGIN_PATH: ./plugin_path
+          LISSIO_DISABLE_OPEN_BROWSER: 1
+          LISSIO_LISTENER_ADDR: localhost:7777
         background: true
     - run:
         name: Cypress

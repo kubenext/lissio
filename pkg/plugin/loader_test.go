@@ -22,7 +22,7 @@ func Test_AvailablePlugins(t *testing.T) {
 	}{
 		{
 			homePath: filepath.Join("/home", "user"),
-			envVar:   "OCTANT_PLUGIN_PATH",
+			envVar:   "LISSIO_PLUGIN_PATH",
 		},
 		{
 			homePath: filepath.Join("/home", "xdg_config_path"),
@@ -42,7 +42,7 @@ func Test_AvailablePlugins(t *testing.T) {
 		}
 
 		switch test.envVar {
-		case "OCTANT_PLUGIN_PATH":
+		case "LISSIO_PLUGIN_PATH":
 			customPath := "/example/test"
 			envPaths := customPath + ":/another/one"
 			os.Setenv(test.envVar, envPaths)

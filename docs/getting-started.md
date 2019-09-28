@@ -5,12 +5,12 @@
 Octant is configurable through environment variables defined at runtime.
 
 * `KUBECONFIG` - set to non-empty location if you want to set KUBECONFIG with an environment variable.
-* `OCTANT_DISABLE_OPEN_BROWSER` - set to a non-empty value if you don't the browser launched when the dashboard start up.
-* `OCTANT_LISTENER_ADDR` - set to address you want dashboard service to start on. (e.g. `localhost:8080`)
-* `OCTANT_ACCEPTED_HOSTS` - set to comma-separated string of hosts to be accepted. (e.g. `demo.octant.example.com,awesome.octant.zr`)
-* `OCTANT_VERBOSE_CACHE` - set to a non-empty value to view cache actions
-* `OCTANT_LOCAL_CONTENT` - set to a directory and dash will serve content responses from here. An example directory lives in `examples/content`
-* `OCTANT_PLUGIN_PATH` - add a plugin directory or multiple directories separated by `:`. Plugins will load by default from `$HOME/.config/octant/plugins`
+* `LISSIO_DISABLE_OPEN_BROWSER` - set to a non-empty value if you don't the browser launched when the dashboard start up.
+* `LISSIO_LISTENER_ADDR` - set to address you want dashboard service to start on. (e.g. `localhost:8080`)
+* `LISSIO_ACCEPTED_HOSTS` - set to comma-separated string of hosts to be accepted. (e.g. `demo.octant.example.com,awesome.octant.zr`)
+* `LISSIO_VERBOSE_CACHE` - set to a non-empty value to view cache actions
+* `LISSIO_LOCAL_CONTENT` - set to a directory and dash will serve content responses from here. An example directory lives in `examples/content`
+* `LISSIO_PLUGIN_PATH` - add a plugin directory or multiple directories separated by `:`. Plugins will load by default from `$HOME/.config/octant/plugins`
 
 **Note:** If using [fish shell](https://fishshell.com), tilde expansion may not occur when using `env` to set environment variables.
 

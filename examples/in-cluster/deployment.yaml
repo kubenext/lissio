@@ -25,9 +25,9 @@ spec:
         ports:
         - containerPort: 7777
         env:
-          - name: OCTANT_LISTENER_ADDR
+          - name: LISSIO_LISTENER_ADDR
             value: 0.0.0.0:7777
-          - name: OCTANT_DISABLE_OPEN_BROWSER
+          - name: LISSIO_DISABLE_OPEN_BROWSER
             value: "1"
         volumeMounts:
           - name: kubeconfig

@@ -14,12 +14,12 @@ GOINSTALL=$(GOCMD) install
 VERSION ?= v0.7.0
 
 ifdef XDG_CONFIG_HOME
-	OCTANT_PLUGINSTUB_DIR ?= ${XDG_CONFIG_HOME}/octant/plugins
+	LISSIO_PLUGINSTUB_DIR ?= ${XDG_CONFIG_HOME}/octant/plugins
 # Determine in on windows
 else ifeq ($(OS),Windows_NT)
-	OCTANT_PLUGINSTUB_DIR ?= ${LOCALAPPDATA}/octant/plugins
+	LISSIO_PLUGINSTUB_DIR ?= ${LOCALAPPDATA}/octant/plugins
 else
-	OCTANT_PLUGINSTUB_DIR ?= ${HOME}/.config/octant/plugins
+	LISSIO_PLUGINSTUB_DIR ?= ${HOME}/.config/octant/plugins
 endif
 
 .PHONY: version
@@ -74,7 +74,7 @@ web-test: web-deps
 	@cd web; npm run test:headless
 
 ui-server:
-	OCTANT_DISABLE_OPEN_BROWSER=1 OCTANT_LISTENER_ADDR=localhost:7777 $(GOCMD) run ./cmd/octant/main.go $(OCTANT_FLAGS)
+	LISSIO_DISABLE_OPEN_BROWSER=1 LISSIO_LISTENER_ADDR=localhost:7777 $(GOCMD) run ./cmd/octant/main.go $(LISSIO_FLAGS)
 
 ui-client:
 	@cd web; API_BASE=http://localhost:7777 npm run start
@@ -101,9 +101,9 @@ ci-quick:
 	make octant-dev
 
 install-test-plugin:
-	@echo $(OCTANT_PLUGINSTUB_DIR)
-	mkdir -p $(OCTANT_PLUGINSTUB_DIR)
-	go build -o $(OCTANT_PLUGINSTUB_DIR)/octant-sample-plugin github.com/kubenext/lissio/cmd/octant-sample-plugin
+	@echo $(LISSIO_PLUGINSTUB_DIR)
+	mkdir -p $(LISSIO_PLUGINSTUB_DIR)
+	go build -o $(LISSIO_PLUGINSTUB_DIR)/octant-sample-plugin github.com/kubenext/lissio/cmd/octant-sample-plugin
 
 .PHONY:
 build-deps:

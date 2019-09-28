@@ -56,7 +56,7 @@ func (c *defaultConfig) PluginDirs() ([]string, error) {
 		defaultDir = filepath.Join(home, configDir, "plugins")
 	}
 
-	if path := os.Getenv("OCTANT_PLUGIN_PATH"); path != "" {
+	if path := os.Getenv("LISSIO_PLUGIN_PATH"); path != "" {
 		path = strings.Trim(path, string(filepath.ListSeparator))
 		return append(filepath.SplitList(path), defaultDir), nil
 	}

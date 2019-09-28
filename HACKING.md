@@ -38,7 +38,7 @@ alias for the frontend, this does not listen for changes and does require you to
 saving your changes.
 
 If working on the frontend, you may want to set up a reverse proxy to the Angular services running on `http://localhost:4200`.
-To set this up, set `OCTANT_PROXY_FRONTEND` environment variable with the location of the frontend.
+To set this up, set `LISSIO_PROXY_FRONTEND` environment variable with the location of the frontend.
 (e.g. http://localhost:4200).
 
 ## Before Your Pull Request

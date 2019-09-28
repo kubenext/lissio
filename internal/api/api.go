@@ -26,8 +26,8 @@ import (
 
 const (
 	// ListenerAddrKey is the environment variable for the Octant listener address.
-	ListenerAddrKey  = "OCTANT_LISTENER_ADDR"
-	AcceptedHostsKey = "OCTANT_ACCEPTED_HOSTS"
+	ListenerAddrKey  = "LISSIO_LISTENER_ADDR"
+	AcceptedHostsKey = "LISSIO_ACCEPTED_HOSTS"
 	// PathPrefix is a string for the api path prefix.
 	PathPrefix          = "/api/v1"
 	defaultListenerAddr = "127.0.0.1:7777"
@@ -46,14 +46,14 @@ func acceptedHosts() []string {
 	listenerAddr := ListenerAddr()
 	host, _, err := net.SplitHostPort(listenerAddr)
 	if err != nil {
-		panic(fmt.Sprintf("Unable to parse OCTANT_LISTENER_ADDR: %s", listenerAddr))
+		panic(fmt.Sprintf("Unable to parse LISSIO_LISTENER_ADDR: %s", listenerAddr))
 	}
 
 	hosts = append(hosts, host)
 	return hosts
 }
 
-// ListenerAddr returns the default listener address if OCTANT_LISTENER_ADDR is not set.
+// ListenerAddr returns the default listener address if LISSIO_LISTENER_ADDR is not set.
 func ListenerAddr() string {
 	listenerAddr := defaultListenerAddr
 	if customListenerAddr := os.Getenv(ListenerAddrKey); customListenerAddr != "" {
