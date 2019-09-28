@@ -15,10 +15,10 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/vmware/octant/internal/module"
-	"github.com/vmware/octant/internal/modules/localcontent"
-	"github.com/vmware/octant/pkg/navigation"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/module"
+	"github.com/kubenext/lissio/internal/modules/localcontent"
+	"github.com/kubenext/lissio/pkg/navigation"
+	"github.com/kubenext/lissio/pkg/view/component"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"

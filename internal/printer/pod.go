@@ -21,9 +21,9 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/kubernetes/scheme"
 
-	"github.com/vmware/octant/internal/link"
-	"github.com/vmware/octant/pkg/store"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/link"
+	"github.com/kubenext/lissio/pkg/store"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 var (

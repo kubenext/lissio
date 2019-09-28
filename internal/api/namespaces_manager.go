@@ -12,10 +12,10 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/vmware/octant/internal/cluster"
-	"github.com/vmware/octant/internal/event"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/octant"
+	"github.com/kubenext/lissio/internal/cluster"
+	"github.com/kubenext/lissio/internal/event"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/octant"
 )
 
 // NamespaceManagerConfig is configuration for NamespacesManager.

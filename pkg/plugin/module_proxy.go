@@ -7,10 +7,10 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/internal/module"
-	"github.com/vmware/octant/internal/octant"
-	"github.com/vmware/octant/pkg/navigation"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/module"
+	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/pkg/navigation"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 // ModuleProxy is a proxy that satisfies Octant module requirements. It allows plugins to behave as if they

@@ -10,8 +10,8 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 type CRDSection struct {

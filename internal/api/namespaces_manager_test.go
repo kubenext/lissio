@@ -12,11 +12,11 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware/octant/internal/api"
-	"github.com/vmware/octant/internal/api/fake"
-	clusterFake "github.com/vmware/octant/internal/cluster/fake"
-	configFake "github.com/vmware/octant/internal/config/fake"
-	octantFake "github.com/vmware/octant/internal/octant/fake"
+	"github.com/kubenext/lissio/internal/api"
+	"github.com/kubenext/lissio/internal/api/fake"
+	clusterFake "github.com/kubenext/lissio/internal/cluster/fake"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	octantFake "github.com/kubenext/lissio/internal/octant/fake"
 )
 
 func TestNamespacesManager_GenerateNamespaces(t *testing.T) {

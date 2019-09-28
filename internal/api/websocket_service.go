@@ -11,7 +11,7 @@ import (
 
 	"github.com/gorilla/websocket"
 
-	"github.com/vmware/octant/internal/config"
+	"github.com/kubenext/lissio/internal/config"
 )
 
 var (

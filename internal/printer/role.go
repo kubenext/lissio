@@ -12,7 +12,7 @@ import (
 	"github.com/pkg/errors"
 	rbacv1 "k8s.io/api/rbac/v1"
 
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 // RoleListHandler is a printFunc that prints roles

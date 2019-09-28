@@ -13,12 +13,12 @@ import (
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/pkg/navigation"
-	"github.com/vmware/octant/pkg/plugin"
-	"github.com/vmware/octant/pkg/plugin/service"
-	"github.com/vmware/octant/pkg/store"
-	"github.com/vmware/octant/pkg/view/component"
-	"github.com/vmware/octant/pkg/view/flexlayout"
+	"github.com/kubenext/lissio/pkg/navigation"
+	"github.com/kubenext/lissio/pkg/plugin"
+	"github.com/kubenext/lissio/pkg/plugin/service"
+	"github.com/kubenext/lissio/pkg/store"
+	"github.com/kubenext/lissio/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/view/flexlayout"
 )
 
 var pluginName = "plugin-name"

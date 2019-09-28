@@ -11,9 +11,9 @@ import (
 	"path"
 	"reflect"
 
-	"github.com/vmware/octant/pkg/icon"
-	"github.com/vmware/octant/pkg/store"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/icon"
+	"github.com/kubenext/lissio/pkg/store"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 const (

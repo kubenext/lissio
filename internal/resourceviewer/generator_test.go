@@ -7,9 +7,9 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware/octant/internal/resourceviewer/fake"
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/resourceviewer/fake"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func TestGenerateComponent(t *testing.T) {

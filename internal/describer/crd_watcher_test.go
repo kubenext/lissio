@@ -16,9 +16,9 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/client-go/tools/cache"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/pkg/store"
-	objectStoreFake "github.com/vmware/octant/pkg/store/fake"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/pkg/store"
+	objectStoreFake "github.com/kubenext/lissio/pkg/store/fake"
 )
 
 func TestNewDefaultCRDWatcher_requires_object_store(t *testing.T) {

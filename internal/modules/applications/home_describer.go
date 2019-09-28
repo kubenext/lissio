@@ -10,8 +10,8 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/vmware/octant/internal/describer"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/describer"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 // HomeDescriberOption is an option for configuring HomeDescriber.

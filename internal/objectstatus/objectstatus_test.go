@@ -15,10 +15,10 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/store"
-	storefake "github.com/vmware/octant/pkg/store/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/store"
+	storefake "github.com/kubenext/lissio/pkg/store/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func Test_status(t *testing.T) {

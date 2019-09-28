@@ -10,8 +10,8 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/pkg/plugin/api/proto"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/pkg/plugin/api/proto"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 )

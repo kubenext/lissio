@@ -13,9 +13,9 @@ import (
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/pkg/action"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/pkg/action"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 // ServiceConfigurationEditor edits editors.

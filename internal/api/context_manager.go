@@ -12,10 +12,10 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/event"
-	"github.com/vmware/octant/internal/octant"
-	"github.com/vmware/octant/pkg/action"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/event"
+	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/pkg/action"
 )
 
 const (

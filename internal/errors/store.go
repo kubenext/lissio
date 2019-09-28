@@ -5,7 +5,7 @@ import (
 
 	"github.com/google/uuid"
 	lru "github.com/hashicorp/golang-lru"
-	"github.com/vmware/octant/pkg/action"
+	"github.com/kubenext/lissio/pkg/action"
 )
 
 const maxErrors = 50

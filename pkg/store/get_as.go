@@ -13,7 +13,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	octantunstructured "github.com/vmware/octant/thirdparty/unstructured"
+	octantunstructured "github.com/kubenext/lissio/thirdparty/unstructured"
 )
 
 // GetAs gets an object from the object store by key. If the object is not found,

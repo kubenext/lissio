@@ -14,7 +14,7 @@ import (
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 type descriptor struct {

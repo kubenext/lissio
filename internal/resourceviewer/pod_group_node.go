@@ -5,7 +5,7 @@ import (
 
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 type podGroupNode struct {

@@ -12,7 +12,7 @@ import (
 	"github.com/pkg/errors"
 	corev1 "k8s.io/api/core/v1"
 
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 var (

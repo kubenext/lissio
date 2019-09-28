@@ -15,10 +15,10 @@ import (
 	"github.com/gorilla/websocket"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/octant"
-	"github.com/vmware/octant/pkg/action"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/pkg/action"
 )
 
 const (

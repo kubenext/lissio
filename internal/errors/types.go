@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/vmware/octant/pkg/action"
+	"github.com/kubenext/lissio/pkg/action"
 )
 
 type InternalError struct {

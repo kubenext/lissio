@@ -23,11 +23,11 @@ import (
 	clientGoTesting "k8s.io/client-go/testing"
 	"k8s.io/client-go/tools/cache"
 
-	"github.com/vmware/octant/internal/cluster"
-	clusterFake "github.com/vmware/octant/internal/cluster/fake"
-	"github.com/vmware/octant/internal/objectstore/fake"
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/cluster"
+	clusterFake "github.com/kubenext/lissio/internal/cluster/fake"
+	"github.com/kubenext/lissio/internal/objectstore/fake"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 var (

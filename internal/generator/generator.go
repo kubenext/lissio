@@ -12,13 +12,13 @@ import (
 	"go.opencensus.io/trace"
 	kLabels "k8s.io/apimachinery/pkg/labels"
 
-	"github.com/vmware/octant/internal/api"
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/describer"
-	"github.com/vmware/octant/internal/link"
-	"github.com/vmware/octant/internal/printer"
-	"github.com/vmware/octant/internal/queryer"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/api"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/describer"
+	"github.com/kubenext/lissio/internal/link"
+	"github.com/kubenext/lissio/internal/printer"
+	"github.com/kubenext/lissio/internal/queryer"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 // Interface generates content.

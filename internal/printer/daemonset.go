@@ -13,7 +13,7 @@ import (
 	appsv1 "k8s.io/api/apps/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 // DaemonSetListHandler is a printFunc that lists daemon sets

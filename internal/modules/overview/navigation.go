@@ -8,11 +8,11 @@ package overview
 import (
 	"context"
 
-	"github.com/vmware/octant/internal/gvk"
-	"github.com/vmware/octant/internal/loading"
-	"github.com/vmware/octant/pkg/icon"
-	"github.com/vmware/octant/pkg/navigation"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/gvk"
+	"github.com/kubenext/lissio/internal/loading"
+	"github.com/kubenext/lissio/pkg/icon"
+	"github.com/kubenext/lissio/pkg/navigation"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 var (

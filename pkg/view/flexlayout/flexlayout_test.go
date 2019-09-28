@@ -8,10 +8,10 @@ package flexlayout_test
 import (
 	"testing"
 
+	"github.com/kubenext/lissio/pkg/action"
+	"github.com/kubenext/lissio/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/view/flexlayout"
 	"github.com/stretchr/testify/require"
-	"github.com/vmware/octant/pkg/action"
-	"github.com/vmware/octant/pkg/view/component"
-	"github.com/vmware/octant/pkg/view/flexlayout"
 )
 
 func TestFlexLayout(t *testing.T) {

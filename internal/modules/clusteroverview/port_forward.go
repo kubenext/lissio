@@ -12,12 +12,12 @@ import (
 	"io"
 	"net/http"
 
+	"github.com/kubenext/lissio/internal/api"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/mime"
+	"github.com/kubenext/lissio/internal/portforward"
+	"github.com/kubenext/lissio/pkg/action"
 	"github.com/pkg/errors"
-	"github.com/vmware/octant/internal/api"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/mime"
-	"github.com/vmware/octant/internal/portforward"
-	"github.com/vmware/octant/pkg/action"
 
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )

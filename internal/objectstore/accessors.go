@@ -5,7 +5,7 @@ import (
 
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 type informerSynced struct {

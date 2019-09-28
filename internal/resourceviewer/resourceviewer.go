@@ -14,11 +14,11 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/objectvisitor"
-	"github.com/vmware/octant/internal/queryer"
-	"github.com/vmware/octant/internal/util/kubernetes"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/objectvisitor"
+	"github.com/kubenext/lissio/internal/queryer"
+	"github.com/kubenext/lissio/internal/util/kubernetes"
 )
 
 const (

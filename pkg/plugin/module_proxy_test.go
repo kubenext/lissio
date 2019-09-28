@@ -8,11 +8,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware/octant/internal/module"
-	"github.com/vmware/octant/pkg/navigation"
-	"github.com/vmware/octant/pkg/plugin"
-	"github.com/vmware/octant/pkg/plugin/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/module"
+	"github.com/kubenext/lissio/pkg/navigation"
+	"github.com/kubenext/lissio/pkg/plugin"
+	"github.com/kubenext/lissio/pkg/plugin/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func TestModuleProxy_Name(t *testing.T) {

@@ -11,9 +11,9 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware/octant/internal/api"
-	octantFake "github.com/vmware/octant/internal/octant/fake"
-	"github.com/vmware/octant/pkg/action"
+	"github.com/kubenext/lissio/internal/api"
+	octantFake "github.com/kubenext/lissio/internal/octant/fake"
+	"github.com/kubenext/lissio/pkg/action"
 )
 
 func TestActionRequestManager_Handlers(t *testing.T) {

@@ -15,18 +15,18 @@ import (
 	"k8s.io/apimachinery/pkg/types"
 	"k8s.io/client-go/kubernetes/scheme"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/gvk"
-	"github.com/vmware/octant/internal/link"
-	"github.com/vmware/octant/internal/objectstatus"
-	"github.com/vmware/octant/internal/objectvisitor"
-	"github.com/vmware/octant/internal/util/kubernetes"
-	"github.com/vmware/octant/pkg/plugin"
-	"github.com/vmware/octant/pkg/store"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/gvk"
+	"github.com/kubenext/lissio/internal/link"
+	"github.com/kubenext/lissio/internal/objectstatus"
+	"github.com/kubenext/lissio/internal/objectvisitor"
+	"github.com/kubenext/lissio/internal/util/kubernetes"
+	"github.com/kubenext/lissio/pkg/plugin"
+	"github.com/kubenext/lissio/pkg/store"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
-//go:generate mockgen -destination=./fake/mock_object_status.go -package=fake github.com/vmware/octant/internal/resourceviewer ObjectStatus
+//go:generate mockgen -destination=./fake/mock_object_status.go -package=fake github.com/kubenext/lissio/internal/resourceviewer ObjectStatus
 
 // HandlerOption is an option for configuring Handler.
 type HandlerOption func(h *Handler)

@@ -15,9 +15,9 @@ import (
 	rbacv1 "k8s.io/api/rbac/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/store"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/store"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func Test_ServiceAccountListHandler(t *testing.T) {

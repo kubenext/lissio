@@ -15,11 +15,11 @@ import (
 	"github.com/pkg/errors"
 	"golang.org/x/sync/errgroup"
 
-	"github.com/vmware/octant/internal/event"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/module"
-	"github.com/vmware/octant/internal/octant"
-	"github.com/vmware/octant/pkg/navigation"
+	"github.com/kubenext/lissio/internal/event"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/module"
+	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/pkg/navigation"
 )
 
 // NavigationManagerConfig is configuration of NavigationManager.

@@ -16,7 +16,7 @@ VERSION ?= v0.7.0
 ifdef XDG_CONFIG_HOME
 	OCTANT_PLUGINSTUB_DIR ?= ${XDG_CONFIG_HOME}/octant/plugins
 # Determine in on windows
-else ifeq ($(OS),Windows_NT) 
+else ifeq ($(OS),Windows_NT)
 	OCTANT_PLUGINSTUB_DIR ?= ${LOCALAPPDATA}/octant/plugins
 else
 	OCTANT_PLUGINSTUB_DIR ?= ${HOME}/.config/octant/plugins
@@ -103,7 +103,7 @@ ci-quick:
 install-test-plugin:
 	@echo $(OCTANT_PLUGINSTUB_DIR)
 	mkdir -p $(OCTANT_PLUGINSTUB_DIR)
-	go build -o $(OCTANT_PLUGINSTUB_DIR)/octant-sample-plugin github.com/vmware/octant/cmd/octant-sample-plugin
+	go build -o $(OCTANT_PLUGINSTUB_DIR)/octant-sample-plugin github.com/kubenext/lissio/cmd/octant-sample-plugin
 
 .PHONY:
 build-deps:

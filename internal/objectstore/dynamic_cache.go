@@ -23,9 +23,9 @@ import (
 	kcache "k8s.io/client-go/tools/cache"
 	kretry "k8s.io/client-go/util/retry"
 
-	"github.com/vmware/octant/internal/cluster"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/cluster"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 const (

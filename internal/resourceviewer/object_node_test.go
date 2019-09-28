@@ -7,12 +7,12 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	linkFake "github.com/vmware/octant/internal/link/fake"
-	"github.com/vmware/octant/internal/objectstatus"
-	"github.com/vmware/octant/internal/resourceviewer/fake"
-	"github.com/vmware/octant/internal/testutil"
-	pluginFake "github.com/vmware/octant/pkg/plugin/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	linkFake "github.com/kubenext/lissio/internal/link/fake"
+	"github.com/kubenext/lissio/internal/objectstatus"
+	"github.com/kubenext/lissio/internal/resourceviewer/fake"
+	"github.com/kubenext/lissio/internal/testutil"
+	pluginFake "github.com/kubenext/lissio/pkg/plugin/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func Test_objectNode(t *testing.T) {

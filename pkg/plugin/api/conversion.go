@@ -12,8 +12,8 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/labels"
 
-	"github.com/vmware/octant/pkg/plugin/api/proto"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/pkg/plugin/api/proto"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 func convertFromKey(in store.Key) (*proto.KeyRequest, error) {

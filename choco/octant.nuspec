@@ -6,18 +6,18 @@
     <version>0.6.0</version>
     <owners>VMware</owners>
     <title>Octant</title>
-    <authors>Bryan Liles, see https://github.com/vmware/octant/graphs/contributors</authors>
-    <projectUrl>https://github.com/vmware/octant</projectUrl>
-    <packageSourceUrl>https://github.com/vmware/octant/blob/master/choco</packageSourceUrl>
+    <authors>Bryan Liles, see https://github.com/kubenext/lissio/graphs/contributors</authors>
+    <projectUrl>https://github.com/kubenext/lissio</projectUrl>
+    <packageSourceUrl>https://github.com/kubenext/lissio/blob/master/choco</packageSourceUrl>
     <!-- TODO:
     <iconUrl></iconUrl>
     -->
-    <licenseUrl>https://github.com/vmware/octant/blob/master/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/kubenext/lissio/blob/master/LICENSE</licenseUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <projectSourceUrl>https://github.com/vmware/octant</projectSourceUrl>
-    <docsUrl>https://github.com/vmware/octant/tree/master/docs</docsUrl>
+    <projectSourceUrl>https://github.com/kubenext/lissio</projectSourceUrl>
+    <docsUrl>https://github.com/kubenext/lissio/tree/master/docs</docsUrl>
     <mailingListUrl>https://groups.google.com/group/project-octant</mailingListUrl>
-    <bugTrackerUrl>https://github.com/vmware/octant/issues</bugTrackerUrl>
+    <bugTrackerUrl>https://github.com/kubenext/lissio/issues</bugTrackerUrl>
     <tags>octant kubernetes kubectl heptio dashboard pod</tags>
     <summary>A web-based, highly extensible platform for developers to better understand the complexity of Kubernetes clusters.
 </summary>
@@ -36,7 +36,7 @@ Consolidated status and configuration information in a single page aggregated fr
 #### Port Forward
 
 Forward a local port to a running pod with a single button for debugging applications and even port forward multiple pods across namespaces.
- 
+
 #### Log Stream
 
 View log streams of pod and container activity for troubleshooting or monitoring without holding multiple terminals open.
@@ -52,7 +52,7 @@ Easily change between namespaces or contexts across different clusters. Multiple
 #### Plugin System
 
 Highly extensible plugin system for users to provide additional functionality through gRPC. Plugin authors can add components on top of existing views.]]></description>
-    <releaseNotes>Release notes are available at https://github.com/vmware/octant/releases</releaseNotes>
+    <releaseNotes>Release notes are available at https://github.com/kubenext/lissio/releases</releaseNotes>
   </metadata>
   <files>
     <file src="tools\**" target="tools" />

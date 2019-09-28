@@ -12,12 +12,12 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/internal/octant"
-	"github.com/vmware/octant/pkg/navigation"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/pkg/navigation"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
-//go:generate mockgen -destination=./fake/mock_module.go -package=fake github.com/vmware/octant/internal/module Module
+//go:generate mockgen -destination=./fake/mock_module.go -package=fake github.com/kubenext/lissio/internal/module Module
 
 // ContentOptions are additional options for content generation
 type ContentOptions struct {

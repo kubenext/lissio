@@ -11,7 +11,7 @@ import (
 	"github.com/hashicorp/go-plugin"
 	"google.golang.org/grpc"
 
-	"github.com/vmware/octant/pkg/plugin/dashboard"
+	"github.com/kubenext/lissio/pkg/plugin/dashboard"
 )
 
 var (

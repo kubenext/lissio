@@ -16,13 +16,13 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/octant"
-	"github.com/vmware/octant/pkg/action"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/pkg/action"
 )
 
-//go:generate mockgen -destination=./fake/mock_state_manager.go -package=fake github.com/vmware/octant/internal/api StateManager
-//go:generate mockgen -destination=./fake/mock_octant_client.go -package=fake github.com/vmware/octant/internal/api OctantClient
+//go:generate mockgen -destination=./fake/mock_state_manager.go -package=fake github.com/kubenext/lissio/internal/api StateManager
+//go:generate mockgen -destination=./fake/mock_octant_client.go -package=fake github.com/kubenext/lissio/internal/api OctantClient
 
 var (
 	reContentPathNamespace = regexp.MustCompile(`^/namespace/(?P<namespace>[^/]+)/?`)

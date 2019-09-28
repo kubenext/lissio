@@ -15,10 +15,10 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware/octant/pkg/action"
-	"github.com/vmware/octant/pkg/navigation"
-	"github.com/vmware/octant/pkg/plugin/dashboard"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/action"
+	"github.com/kubenext/lissio/pkg/navigation"
+	"github.com/kubenext/lissio/pkg/plugin/dashboard"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 // GRPCClient is the dashboard GRPC client.

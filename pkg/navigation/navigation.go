@@ -17,10 +17,10 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/pkg/icon"
-	"github.com/vmware/octant/pkg/store"
-	octantUnstructured "github.com/vmware/octant/thirdparty/unstructured"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/pkg/icon"
+	"github.com/kubenext/lissio/pkg/store"
+	octantUnstructured "github.com/kubenext/lissio/thirdparty/unstructured"
 )
 
 // Option is an option for configuring navigation.

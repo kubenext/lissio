@@ -17,9 +17,9 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"github.com/vmware/octant/internal/conversion"
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/conversion"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func Test_PodListHandler(t *testing.T) {

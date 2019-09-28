@@ -9,9 +9,9 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware/octant/internal/link"
-	"github.com/vmware/octant/pkg/plugin"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/link"
+	"github.com/kubenext/lissio/pkg/plugin"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 type objectNode struct {

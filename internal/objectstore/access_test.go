@@ -5,9 +5,9 @@ import (
 	"testing"
 
 	"github.com/golang/mock/gomock"
+	clusterfake "github.com/kubenext/lissio/internal/cluster/fake"
+	"github.com/kubenext/lissio/pkg/store"
 	"github.com/stretchr/testify/require"
-	clusterfake "github.com/vmware/octant/internal/cluster/fake"
-	"github.com/vmware/octant/pkg/store"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 )
 

@@ -8,7 +8,7 @@ package describer
 import (
 	"context"
 
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 type StubDescriber struct {

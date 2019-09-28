@@ -8,9 +8,9 @@ import (
 	"golang.org/x/sync/errgroup"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/queryer"
-	"github.com/vmware/octant/internal/util/kubernetes"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/queryer"
+	"github.com/kubenext/lissio/internal/util/kubernetes"
 )
 
 // Object is the default visitor for an object.

@@ -10,12 +10,12 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	configFake "github.com/vmware/octant/internal/config/fake"
-	linkFake "github.com/vmware/octant/internal/link/fake"
-	portForwardFake "github.com/vmware/octant/internal/portforward/fake"
-	pluginFake "github.com/vmware/octant/pkg/plugin/fake"
-	objectStoreFake "github.com/vmware/octant/pkg/store/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	linkFake "github.com/kubenext/lissio/internal/link/fake"
+	portForwardFake "github.com/kubenext/lissio/internal/portforward/fake"
+	pluginFake "github.com/kubenext/lissio/pkg/plugin/fake"
+	objectStoreFake "github.com/kubenext/lissio/pkg/store/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 const (

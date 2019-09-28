@@ -15,13 +15,13 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware/octant/internal/gvk"
-	"github.com/vmware/octant/internal/portforward"
-	portForwardFake "github.com/vmware/octant/internal/portforward/fake"
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/plugin/api"
-	"github.com/vmware/octant/pkg/store"
-	storeFake "github.com/vmware/octant/pkg/store/fake"
+	"github.com/kubenext/lissio/internal/gvk"
+	"github.com/kubenext/lissio/internal/portforward"
+	portForwardFake "github.com/kubenext/lissio/internal/portforward/fake"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/plugin/api"
+	"github.com/kubenext/lissio/pkg/store"
+	storeFake "github.com/kubenext/lissio/pkg/store/fake"
 )
 
 type apiMocks struct {

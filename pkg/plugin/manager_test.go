@@ -16,11 +16,11 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/internal/testutil"
-	dashPlugin "github.com/vmware/octant/pkg/plugin"
-	"github.com/vmware/octant/pkg/plugin/api"
-	"github.com/vmware/octant/pkg/plugin/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/testutil"
+	dashPlugin "github.com/kubenext/lissio/pkg/plugin"
+	"github.com/kubenext/lissio/pkg/plugin/api"
+	"github.com/kubenext/lissio/pkg/plugin/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func TestDefaultStore(t *testing.T) {

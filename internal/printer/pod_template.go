@@ -10,8 +10,8 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware/octant/pkg/view/component"
-	"github.com/vmware/octant/pkg/view/flexlayout"
+	"github.com/kubenext/lissio/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/view/flexlayout"
 )
 
 type podTemplateLayoutOptions struct {
@@ -113,7 +113,7 @@ func podTemplateContainers(fl *flexlayout.FlexLayout, options podTemplateLayoutO
 			return err
 		}
 
-		if len(options.containers) % 2  != 0 && len(options.containers) == index + 1  {
+		if len(options.containers)%2 != 0 && len(options.containers) == index+1 {
 			width = component.WidthFull
 		}
 

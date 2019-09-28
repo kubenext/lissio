@@ -11,10 +11,10 @@ import (
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware/octant/internal/gvk"
-	"github.com/vmware/octant/internal/portforward"
-	"github.com/vmware/octant/pkg/plugin/api/proto"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/gvk"
+	"github.com/kubenext/lissio/internal/portforward"
+	"github.com/kubenext/lissio/pkg/plugin/api/proto"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 // PortForwardRequest describes a port forward request.

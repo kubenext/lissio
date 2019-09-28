@@ -14,13 +14,13 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/utils/pointer"
 
-	configFake "github.com/vmware/octant/internal/config/fake"
-	"github.com/vmware/octant/internal/objectstatus"
-	"github.com/vmware/octant/internal/resourceviewer/fake"
-	"github.com/vmware/octant/internal/testutil"
-	pluginFake "github.com/vmware/octant/pkg/plugin/fake"
-	storeFake "github.com/vmware/octant/pkg/store/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/objectstatus"
+	"github.com/kubenext/lissio/internal/resourceviewer/fake"
+	"github.com/kubenext/lissio/internal/testutil"
+	pluginFake "github.com/kubenext/lissio/pkg/plugin/fake"
+	storeFake "github.com/kubenext/lissio/pkg/store/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func TestHandler(t *testing.T) {

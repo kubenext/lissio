@@ -14,10 +14,10 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	kcache "k8s.io/client-go/tools/cache"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/objectstore"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/objectstore"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 // DefaultCRDWatcher is the default CRD watcher.

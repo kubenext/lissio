@@ -14,15 +14,15 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/link"
-	"github.com/vmware/octant/internal/modules/overview/yamlviewer"
-	"github.com/vmware/octant/internal/printer"
-	"github.com/vmware/octant/internal/queryer"
-	"github.com/vmware/octant/internal/resourceviewer"
-	"github.com/vmware/octant/pkg/icon"
-	"github.com/vmware/octant/pkg/store"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/link"
+	"github.com/kubenext/lissio/internal/modules/overview/yamlviewer"
+	"github.com/kubenext/lissio/internal/printer"
+	"github.com/kubenext/lissio/internal/queryer"
+	"github.com/kubenext/lissio/internal/resourceviewer"
+	"github.com/kubenext/lissio/pkg/icon"
+	"github.com/kubenext/lissio/pkg/store"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 type crdPrinter func(ctx context.Context, crd *apiextv1beta1.CustomResourceDefinition, object *unstructured.Unstructured, options printer.Options) (component.Component, error)

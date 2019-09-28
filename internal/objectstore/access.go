@@ -14,8 +14,8 @@ import (
 	"go.opencensus.io/trace"
 	authorizationv1 "k8s.io/api/authorization/v1"
 
-	"github.com/vmware/octant/internal/cluster"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/cluster"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 type AccessError struct {

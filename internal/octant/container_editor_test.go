@@ -14,12 +14,12 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/action"
-	actionFake "github.com/vmware/octant/pkg/action/fake"
-	"github.com/vmware/octant/pkg/store"
-	"github.com/vmware/octant/pkg/store/fake"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/action"
+	actionFake "github.com/kubenext/lissio/pkg/action/fake"
+	"github.com/kubenext/lissio/pkg/store"
+	"github.com/kubenext/lissio/pkg/store/fake"
 )
 
 func TestNewContainerEditor(t *testing.T) {

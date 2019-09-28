@@ -14,10 +14,10 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/store"
-	storefake "github.com/vmware/octant/pkg/store/fake"
-	"github.com/vmware/octant/pkg/view/flexlayout"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/store"
+	storefake "github.com/kubenext/lissio/pkg/store/fake"
+	"github.com/kubenext/lissio/pkg/view/flexlayout"
 )
 
 func mockObjectsEvents(t *testing.T, appObjectStore *storefake.MockStore, namespace string, events ...corev1.Event) {

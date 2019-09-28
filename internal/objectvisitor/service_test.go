@@ -10,10 +10,10 @@ import (
 	extv1beta1 "k8s.io/api/extensions/v1beta1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	"github.com/vmware/octant/internal/objectvisitor"
-	"github.com/vmware/octant/internal/objectvisitor/fake"
-	queryerFake "github.com/vmware/octant/internal/queryer/fake"
-	"github.com/vmware/octant/internal/testutil"
+	"github.com/kubenext/lissio/internal/objectvisitor"
+	"github.com/kubenext/lissio/internal/objectvisitor/fake"
+	queryerFake "github.com/kubenext/lissio/internal/queryer/fake"
+	"github.com/kubenext/lissio/internal/testutil"
 )
 
 func TestService_Visit(t *testing.T) {

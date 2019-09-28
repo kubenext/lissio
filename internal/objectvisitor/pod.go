@@ -11,9 +11,9 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/internal/gvk"
-	"github.com/vmware/octant/internal/queryer"
-	"github.com/vmware/octant/internal/util/kubernetes"
+	"github.com/kubenext/lissio/internal/gvk"
+	"github.com/kubenext/lissio/internal/queryer"
+	"github.com/kubenext/lissio/internal/util/kubernetes"
 )
 
 // Pod is a typed visitor for pods.

@@ -12,12 +12,12 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	configFake "github.com/vmware/octant/internal/config/fake"
-	"github.com/vmware/octant/internal/gvk"
-	"github.com/vmware/octant/internal/objectvisitor"
-	ovFake "github.com/vmware/octant/internal/objectvisitor/fake"
-	queryerFake "github.com/vmware/octant/internal/queryer/fake"
-	"github.com/vmware/octant/internal/testutil"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/gvk"
+	"github.com/kubenext/lissio/internal/objectvisitor"
+	ovFake "github.com/kubenext/lissio/internal/objectvisitor/fake"
+	queryerFake "github.com/kubenext/lissio/internal/queryer/fake"
+	"github.com/kubenext/lissio/internal/testutil"
 )
 
 func TestDefaultVisitor_Visit_use_typed_visitor(t *testing.T) {

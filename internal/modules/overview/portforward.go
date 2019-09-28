@@ -14,10 +14,10 @@ import (
 	"github.com/pkg/errors"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/internal/api"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/mime"
-	"github.com/vmware/octant/internal/portforward"
+	"github.com/kubenext/lissio/internal/api"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/mime"
+	"github.com/kubenext/lissio/internal/portforward"
 )
 
 type portForwardCreateRequest struct {

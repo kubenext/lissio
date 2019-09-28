@@ -10,9 +10,9 @@ import (
 
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	"github.com/vmware/octant/pkg/navigation"
-	"github.com/vmware/octant/pkg/plugin/dashboard"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/navigation"
+	"github.com/kubenext/lissio/pkg/plugin/dashboard"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func convertToCapabilities(in *dashboard.RegisterResponse_Capabilities) Capabilities {

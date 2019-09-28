@@ -15,8 +15,8 @@ import (
 	"k8s.io/api/extensions/v1beta1"
 	rbacv1 "k8s.io/api/rbac/v1"
 
-	"github.com/vmware/octant/pkg/icon"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/pkg/icon"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 var (

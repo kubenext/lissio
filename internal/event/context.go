@@ -12,9 +12,9 @@ import (
 
 	"github.com/pkg/errors"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/kubeconfig"
-	"github.com/vmware/octant/internal/octant"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/kubeconfig"
+	"github.com/kubenext/lissio/internal/octant"
 )
 
 // kubeContextsResponse is a response for current kube contexts.

@@ -13,9 +13,9 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/pkg/action"
-	"github.com/vmware/octant/pkg/action/fake"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/pkg/action"
+	"github.com/kubenext/lissio/pkg/action/fake"
 )
 
 func TestManager(t *testing.T) {

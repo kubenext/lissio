@@ -15,12 +15,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware/octant/internal/api"
-	"github.com/vmware/octant/internal/api/fake"
-	configFake "github.com/vmware/octant/internal/config/fake"
-	"github.com/vmware/octant/internal/log"
-	moduleFake "github.com/vmware/octant/internal/module/fake"
-	"github.com/vmware/octant/internal/octant"
+	"github.com/kubenext/lissio/internal/api"
+	"github.com/kubenext/lissio/internal/api/fake"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/log"
+	moduleFake "github.com/kubenext/lissio/internal/module/fake"
+	"github.com/kubenext/lissio/internal/octant"
 )
 
 func TestWebsocketState_Start(t *testing.T) {

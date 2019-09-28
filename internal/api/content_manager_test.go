@@ -12,14 +12,14 @@ import (
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/require"
 
-	"github.com/vmware/octant/internal/api"
-	"github.com/vmware/octant/internal/api/fake"
-	"github.com/vmware/octant/internal/log"
-	moduleFake "github.com/vmware/octant/internal/module/fake"
-	"github.com/vmware/octant/internal/octant"
-	octantFake "github.com/vmware/octant/internal/octant/fake"
-	"github.com/vmware/octant/pkg/action"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/api"
+	"github.com/kubenext/lissio/internal/api/fake"
+	"github.com/kubenext/lissio/internal/log"
+	moduleFake "github.com/kubenext/lissio/internal/module/fake"
+	"github.com/kubenext/lissio/internal/octant"
+	octantFake "github.com/kubenext/lissio/internal/octant/fake"
+	"github.com/kubenext/lissio/pkg/action"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func TestContentManager_Handlers(t *testing.T) {

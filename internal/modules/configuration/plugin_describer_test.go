@@ -14,13 +14,13 @@ import (
 	"github.com/stretchr/testify/require"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	configFake "github.com/vmware/octant/internal/config/fake"
-	"github.com/vmware/octant/internal/describer"
-	"github.com/vmware/octant/internal/gvk"
-	dashPlugin "github.com/vmware/octant/pkg/plugin"
-	"github.com/vmware/octant/pkg/plugin/fake"
-	pluginFake "github.com/vmware/octant/pkg/plugin/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/describer"
+	"github.com/kubenext/lissio/internal/gvk"
+	dashPlugin "github.com/kubenext/lissio/pkg/plugin"
+	"github.com/kubenext/lissio/pkg/plugin/fake"
+	pluginFake "github.com/kubenext/lissio/pkg/plugin/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func TestPluginDescriber(t *testing.T) {

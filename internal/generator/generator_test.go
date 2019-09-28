@@ -14,11 +14,11 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	clusterFake "github.com/vmware/octant/internal/cluster/fake"
-	configFake "github.com/vmware/octant/internal/config/fake"
-	"github.com/vmware/octant/internal/describer"
-	objectStoreFake "github.com/vmware/octant/pkg/store/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	clusterFake "github.com/kubenext/lissio/internal/cluster/fake"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/describer"
+	objectStoreFake "github.com/kubenext/lissio/pkg/store/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func Test_realGenerator_Generate(t *testing.T) {

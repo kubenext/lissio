@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/octant"
-	"github.com/vmware/octant/pkg/action"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/octant"
+	"github.com/kubenext/lissio/pkg/action"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
 type ObjectDeleter struct {

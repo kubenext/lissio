@@ -19,11 +19,11 @@ import (
 	"k8s.io/client-go/rest"
 	restclient "k8s.io/client-go/rest"
 
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/pkg/store"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/pkg/store"
 )
 
-//go:generate mockgen -source=service.go -destination=./fake/mock_interface.go -package=fake github.com/vmware/octant/internal/portforward PortForwarder
+//go:generate mockgen -source=service.go -destination=./fake/mock_interface.go -package=fake github.com/kubenext/lissio/internal/portforward PortForwarder
 
 var (
 	emptyPortForwardResponse = CreateResponse{}

@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/kubenext/lissio/pkg/action"
 	"github.com/stretchr/testify/assert"
-	"github.com/vmware/octant/pkg/action"
 )
 
 func TestNewInternalError(t *testing.T) {

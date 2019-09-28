@@ -13,8 +13,8 @@ import (
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/client-go/kubernetes/scheme"
 
-	"github.com/vmware/octant/pkg/store"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/pkg/store"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func pod(ctx context.Context, object runtime.Object, o store.Store) (ObjectStatus, error) {
@@ -36,7 +36,7 @@ func pod(ctx context.Context, object runtime.Object, o store.Store) (ObjectStatu
 	case corev1.PodUnknown:
 		status.nodeStatus = component.NodeStatusError
 	default:
-	status.	nodeStatus = component.NodeStatusWarning
+		status.nodeStatus = component.NodeStatusWarning
 	}
 
 	status.Details = []component.Component{

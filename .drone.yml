@@ -4,7 +4,7 @@ name: default
 
 workspace:
   base: /go
-  path: src/github.com/vmware/octant
+  path: src/github.com/kubenext/lissio
 
 steps:
   - name: fetch

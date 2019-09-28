@@ -16,13 +16,13 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/vmware/octant/internal/config"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/mime"
-	"github.com/vmware/octant/internal/module"
+	"github.com/kubenext/lissio/internal/config"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/mime"
+	"github.com/kubenext/lissio/internal/module"
 )
 
-//go:generate mockgen -destination=./fake/mock_service.go -package=fake github.com/vmware/octant/internal/api Service
+//go:generate mockgen -destination=./fake/mock_service.go -package=fake github.com/kubenext/lissio/internal/api Service
 
 const (
 	// ListenerAddrKey is the environment variable for the Octant listener address.

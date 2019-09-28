@@ -15,17 +15,17 @@ import (
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime"
 
-	"github.com/vmware/octant/internal/config"
-	configFake "github.com/vmware/octant/internal/config/fake"
-	linkFake "github.com/vmware/octant/internal/link/fake"
-	"github.com/vmware/octant/internal/printer"
-	"github.com/vmware/octant/internal/queryer"
-	"github.com/vmware/octant/internal/testutil"
-	"github.com/vmware/octant/pkg/icon"
-	pluginFake "github.com/vmware/octant/pkg/plugin/fake"
-	"github.com/vmware/octant/pkg/store"
-	storefake "github.com/vmware/octant/pkg/store/fake"
-	"github.com/vmware/octant/pkg/view/component"
+	"github.com/kubenext/lissio/internal/config"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	linkFake "github.com/kubenext/lissio/internal/link/fake"
+	"github.com/kubenext/lissio/internal/printer"
+	"github.com/kubenext/lissio/internal/queryer"
+	"github.com/kubenext/lissio/internal/testutil"
+	"github.com/kubenext/lissio/pkg/icon"
+	pluginFake "github.com/kubenext/lissio/pkg/plugin/fake"
+	"github.com/kubenext/lissio/pkg/store"
+	storefake "github.com/kubenext/lissio/pkg/store/fake"
+	"github.com/kubenext/lissio/pkg/view/component"
 )
 
 func Test_crd(t *testing.T) {

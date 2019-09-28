@@ -11,12 +11,12 @@ import (
 
 	"github.com/golang/mock/gomock"
 
-	"github.com/vmware/octant/internal/api"
-	"github.com/vmware/octant/internal/api/fake"
-	configFake "github.com/vmware/octant/internal/config/fake"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/octant"
-	octantFake "github.com/vmware/octant/internal/octant/fake"
+	"github.com/kubenext/lissio/internal/api"
+	"github.com/kubenext/lissio/internal/api/fake"
+	configFake "github.com/kubenext/lissio/internal/config/fake"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/octant"
+	octantFake "github.com/kubenext/lissio/internal/octant/fake"
 )
 
 func TestContextManager_Handlers(t *testing.T) {

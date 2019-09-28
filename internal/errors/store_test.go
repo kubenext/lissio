@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/kubenext/lissio/pkg/action"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"github.com/vmware/octant/pkg/action"
 )
 
 func TestNewErrorStore(t *testing.T) {

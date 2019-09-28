@@ -8,10 +8,10 @@ package dash
 import (
 	"github.com/pkg/errors"
 
-	"github.com/vmware/octant/internal/module"
-	"github.com/vmware/octant/pkg/action"
-	"github.com/vmware/octant/pkg/plugin"
-	"github.com/vmware/octant/pkg/plugin/api"
+	"github.com/kubenext/lissio/internal/module"
+	"github.com/kubenext/lissio/pkg/action"
+	"github.com/kubenext/lissio/pkg/plugin"
+	"github.com/kubenext/lissio/pkg/plugin/api"
 )
 
 func initPlugin(moduleManager module.ManagerInterface, actionManager *action.Manager, service api.Service) (*plugin.Manager, error) {

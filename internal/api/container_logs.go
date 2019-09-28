@@ -14,9 +14,9 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/vmware/octant/internal/cluster"
-	"github.com/vmware/octant/internal/log"
-	"github.com/vmware/octant/internal/modules/overview/container"
+	"github.com/kubenext/lissio/internal/cluster"
+	"github.com/kubenext/lissio/internal/log"
+	"github.com/kubenext/lissio/internal/modules/overview/container"
 )
 
 type logEntry struct {

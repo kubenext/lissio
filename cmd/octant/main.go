@@ -9,7 +9,7 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/vmware/octant/internal/commands"
+	"github.com/kubenext/lissio/internal/commands"
 )
 
 // Default variables overridden by ldflags
