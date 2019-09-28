@@ -4,23 +4,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: octant
+  name: lissio
   labels:
-    app: octant
+    app: lissio
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: octant
+      app: lissio
   template:
     metadata:
       labels:
-        app: octant
+        app: lissio
     spec:
       containers:
-      - name: octant
-        image: octant
-        command: ["/octant"]
+      - name: lissio
+        image: lissio
+        command: ["/lissio"]
         args: ["-v", "--kubeconfig", "/kube/dev-dash-kubeconfig.yaml"]
         ports:
         - containerPort: 7777
@@ -35,5 +35,5 @@ spec:
       volumes:
         - name: kubeconfig
           secret:
-            secretName: octant-kubeconfig
+            secretName: lissio-kubeconfig
             defaultMode: 256

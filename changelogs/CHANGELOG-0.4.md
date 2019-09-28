@@ -13,9 +13,9 @@
   * Fix showing multiple containers within a pod in summary view (#88, @GuessWhoSamFoo)
   * Preserve resource view during a namespace switch (#80, @mdaverde)
   * fix an issue where a bad CRD would prevent the UI from loading (#76, @wwitzel3)
-  * Add octant flag for specifying klog verbosity level (#52, @bryanl)
+  * Add lissio flag for specifying klog verbosity level (#52, @bryanl)
   * Tune rate limiter for client-go's rest client (#51, @bryanl)
-  * Rename sample plugin to octant-sample-plugin (#50, @bryanl)
+  * Rename sample plugin to lissio-sample-plugin (#50, @bryanl)
 
 
 ## v0.4.0

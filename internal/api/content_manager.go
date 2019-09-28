@@ -75,7 +75,7 @@ func NewContentManager(moduleManager module.ManagerInterface, logger log.Logger,
 var _ StateManager = (*ContentManager)(nil)
 
 // Start starts the manager.
-func (cm *ContentManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
+func (cm *ContentManager) Start(ctx context.Context, state controllers.State, s LissioClient) {
 	defer func() {
 		close(cm.updateContentCh)
 	}()
@@ -88,7 +88,7 @@ func (cm *ContentManager) Start(ctx context.Context, state controllers.State, s 
 	cm.poller.Run(ctx, cm.updateContentCh, cm.runUpdate(state, s), event.DefaultScheduleDelay)
 }
 
-func (cm *ContentManager) runUpdate(state controllers.State, s OctantClient) PollerFunc {
+func (cm *ContentManager) runUpdate(state controllers.State, s LissioClient) PollerFunc {
 	return func(ctx context.Context) bool {
 		contentPath := state.GetContentPath()
 		if contentPath == "" {

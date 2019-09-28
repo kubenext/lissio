@@ -11,7 +11,7 @@ import (
 
 //go:generate mockgen -destination=./fake/mock_dashboard.go -package=fake github.com/kubenext/lissio/pkg/plugin/service Dashboard
 
-// Dashboard is the client a plugin can use to interact with Octant.
+// Dashboard is the client a plugin can use to interact with Lissio.
 type Dashboard interface {
 	Close() error
 	List(ctx context.Context, key store.Key) (*unstructured.UnstructuredList, error)

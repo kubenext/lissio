@@ -31,7 +31,7 @@ func TestNavigationManager_GenerateNavigation(t *testing.T) {
 	state := lissioFake.NewMockState(controller)
 	state.EXPECT().GetContentPath().Return("/path")
 
-	lissioClient := fake.NewMockOctantClient(controller)
+	lissioClient := fake.NewMockLissioClient(controller)
 
 	sections := []navigation.Navigation{{Title: "module"}}
 

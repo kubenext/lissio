@@ -28,7 +28,7 @@ func NewActionRequestManager() *ActionRequestManager {
 	return &ActionRequestManager{}
 }
 
-func (a ActionRequestManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
+func (a ActionRequestManager) Start(ctx context.Context, state controllers.State, s LissioClient) {
 }
 
 // Handlers returns the handlers this manager supports.

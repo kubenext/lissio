@@ -53,7 +53,7 @@ func TestContentManager_GenerateContent(t *testing.T) {
 		fn("foo")
 		return func() {}
 	})
-	lissioClient := fake.NewMockOctantClient(controller)
+	lissioClient := fake.NewMockLissioClient(controller)
 
 	contentResponse := component.ContentResponse{
 		IconName: "fake",

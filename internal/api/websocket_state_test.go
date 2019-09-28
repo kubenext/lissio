@@ -29,7 +29,7 @@ func TestWebsocketState_Start(t *testing.T) {
 
 	started := make(chan bool, 1)
 	mocks.stateManager.EXPECT().Start(gomock.Any(), gomock.Any(), gomock.Any()).
-		DoAndReturn(func(ctx context.Context, state controllers.State, wsClient api.OctantClient) {
+		DoAndReturn(func(ctx context.Context, state controllers.State, wsClient api.LissioClient) {
 			started <- true
 		})
 	s := mocks.factory()
@@ -257,7 +257,7 @@ type websocketStateMocks struct {
 	module           *moduleFake.MockModule
 	moduleManager    *moduleFake.MockManagerInterface
 	dashConfig       *configFake.MockDash
-	wsClient         *fake.MockOctantClient
+	wsClient         *fake.MockLissioClient
 	stateManager     *fake.MockStateManager
 	actionDispatcher *fake.MockActionDispatcher
 }
@@ -271,7 +271,7 @@ func newWebsocketStateMocks(t *testing.T, namespace string) *websocketStateMocks
 	dashConfig.EXPECT().DefaultNamespace().Return(namespace)
 	dashConfig.EXPECT().ModuleManager().Return(moduleManager).AnyTimes()
 	dashConfig.EXPECT().Logger().Return(log.NopLogger()).AnyTimes()
-	lissioClient := fake.NewMockOctantClient(controller)
+	lissioClient := fake.NewMockLissioClient(controller)
 	stateManager := fake.NewMockStateManager(controller)
 	actionDispatcher := fake.NewMockActionDispatcher(controller)
 

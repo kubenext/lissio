@@ -4,11 +4,11 @@ weight: 50
 
 # Writing Plugins
 
-When you want to extend Octant to do something that is not part of the core functionality you will need to write a plugin. Writing an Octant plugin consists of three main parts. Defining the capabilities, creating handlers, and finally registering and serving the plugin.
+When you want to extend Lissio to do something that is not part of the core functionality you will need to write a plugin. Writing an Lissio plugin consists of three main parts. Defining the capabilities, creating handlers, and finally registering and serving the plugin.
 
 ## Capabilities
 
-Using `plugin.Capabilities` you can define your desired list of capabilites using GVKs. Octant provides a set of well defined capabilites for plugins. These capabilites directly map to Octant renderers and allows your plugin to inject its own components in to the view.
+Using `plugin.Capabilities` you can define your desired list of capabilites using GVKs. Lissio provides a set of well defined capabilites for plugins. These capabilites directly map to Lissio renderers and allows your plugin to inject its own components in to the view.
 
 When `plugin.Metadata.IsModule` to true plugins can provide content and navigation entries.
 
@@ -37,7 +37,7 @@ Using `service.HandlerFuncs` you will assign handler functions for each of the c
 
 ## Register and Serve
 
-Registering and serving your plugin is the final step to get your plugin communicating with Octant. This is also where you
+Registering and serving your plugin is the final step to get your plugin communicating with Lissio. This is also where you
 will pass in the name and description for the plugin.
 
 ```go
@@ -46,18 +46,18 @@ will pass in the name and description for the plugin.
 		log.Fatal(err)
 	}
 
-	log.Printf("octant-sample-plugin is starting")
+	log.Printf("lissio-sample-plugin is starting")
 	p.Serve()
 ```
 
 
 ## Example
 
-Octant ships with an [example plugin](https://github.com/kubenext/lissio/blob/master/cmd/octant-sample-plugin/main.go).
+Lissio ships with an [example plugin](https://github.com/kubenext/lissio/blob/master/cmd/lissio-sample-plugin/main.go).
 
 # More About Capabilities
 
-Octant provides a well defined set of capabilites for plugins to implement these include:
+Lissio provides a well defined set of capabilites for plugins to implement these include:
 
  * Print support; printing config, status, and items to the overview summary for an object.
  * Tab support; creating a new tab in the overview for an object.
@@ -171,7 +171,7 @@ func handleNavigation(dashboardClient service.Dashboard) (navigation.Navigation,
 
 ## Content
 
-Plugins configured as modules can serve content. The content consists of Octant components. wrapped in a `ContentResponse`.
+Plugins configured as modules can serve content. The content consists of Lissio components. wrapped in a `ContentResponse`.
 The function will receive the currently requested content path and can display content based on that path. 
 
 ```go
@@ -186,7 +186,7 @@ func handleContent(dashboardClient service.Dashboard, contentPath string) (compo
 
 ## Module Path
 
-Currently Octant creates a non-configurable base path for your plugin that is derived from the name of the plugin.
+Currently Lissio creates a non-configurable base path for your plugin that is derived from the name of the plugin.
 
     /content/plugin-name
 

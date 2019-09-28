@@ -26,7 +26,7 @@ func TestNamespacesManager_GenerateNamespaces(t *testing.T) {
 	dashConfig := configFake.NewMockDash(controller)
 
 	state := lissioFake.NewMockState(controller)
-	lissioClient := fake.NewMockOctantClient(controller)
+	lissioClient := fake.NewMockLissioClient(controller)
 
 	namespaces := []string{"default"}
 

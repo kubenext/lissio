@@ -6,4 +6,4 @@ Drone is allows running tests and builds inside containers. This document shows 
 
 2. Make sure to have an up-to-date version of Docker
 
-3. Run `drone exec` from the base of the octant repository to start frontend and backend tests in parallel. To start only a single step of the pipeline, add `--include` with the step name (e.g. `drone exec --include backend`) 
+3. Run `drone exec` from the base of the lissio repository to start frontend and backend tests in parallel. To start only a single step of the pipeline, add `--include` with the step name (e.g. `drone exec --include backend`) 

@@ -18,11 +18,11 @@ Alternatively, build the go binary using `go build` then move the binary to the 
 
 ## Installation
 
-The Makefile installs plugins by creating a `$HOME/.config/octant/plugin/` directory then building the binary to that location.
+The Makefile installs plugins by creating a `$HOME/.config/lissio/plugin/` directory then building the binary to that location.
 
 Run plugins from additional paths by setting paths to the `LISSIO_PLUGIN_PATH` environment variable when running the dashboard.
 
-Octant will also respect `XDG_CONFIG_HOME` on Unix and `LocalAppData` on Windows for default plugin paths.
+Lissio will also respect `XDG_CONFIG_HOME` on Unix and `LocalAppData` on Windows for default plugin paths.
 
 ## Define Capability
 

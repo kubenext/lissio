@@ -88,11 +88,11 @@ func (c *ContextManager) SetContext(state controllers.State, payload action.Payl
 }
 
 // Start starts the manager.
-func (c *ContextManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
+func (c *ContextManager) Start(ctx context.Context, state controllers.State, s LissioClient) {
 	c.poller.Run(ctx, nil, c.runUpdate(state, s), event.DefaultScheduleDelay)
 }
 
-func (c *ContextManager) runUpdate(state controllers.State, s OctantClient) PollerFunc {
+func (c *ContextManager) runUpdate(state controllers.State, s LissioClient) PollerFunc {
 	var previous []byte
 
 	logger := c.dashConfig.Logger()

@@ -1,5 +1,5 @@
-describe('Octant Integration Tests', () => {
-    var namespace = 'octant-cypress-' +  random_string()
+describe('Lissio Integration Tests', () => {
+    var namespace = 'lissio-cypress-' +  random_string()
     var startingContext = ''
 
     before(function() {
@@ -17,7 +17,7 @@ describe('Octant Integration Tests', () => {
 
     it('loads page', () => {
         cy.visit('/')
-        cy.title().should('include', 'Octant')
+        cy.title().should('include', 'Lissio')
     })
 
     it('namespace dropdown', () => {
@@ -26,43 +26,43 @@ describe('Octant Integration Tests', () => {
             .click()
 
         cy
-            .contains('octant-cypress')
+            .contains('lissio-cypress')
             .click()
     })
 
     it('has kubeconfig context', () => {
-        cy.contains(' octant-temporary ').click()
-    
+        cy.contains(' lissio-temporary ').click()
+
         cy
             .get('.active')
-            .contains(' octant-temporary ')
+            .contains(' lissio-temporary ')
     })
-    
+
     it('create and delete port forward', () => {
         // Find first nginx pod in overview
         cy
             .exec('kubectl apply -f ../examples/resources/deployment.yaml --namespace ' + namespace)
             .its('stdout')
             .should('contains', 'nginx-deployment')
-    
+
         cy.contains(/^nginx-deployment-[a-z0-9]+-[a-z0-9]+/).click()
         cy.contains('Running').should('be.visible')
-    
+
         cy.contains(/Start port forward/).click().should('not.exist')
-    
+
         cy
             .get('[class=port-actions]')
             .should('have.length', 1)
             .first()
             .contains('Stop port forward')
-    
+
         cy.contains(/Port Forwards/).click()
-    
+
         cy.contains(/Stop port forward/).should('be.visible')
         cy.exec('kubectl delete pod -l app.kubernetes.io/name=nginx,app.kubernetes.io/instance=sample,app.kubernetes.io/version=v1 --namespace ' + namespace)
             .its('stdout')
             .should('contain', 'deleted')
-    
+
         cy.contains(/Stop port forward/).should('not.exist')
     })
 
@@ -78,7 +78,7 @@ describe('Octant Integration Tests', () => {
             .should('have.length', 5)
             .last()
             .contains('Extra Pod Details')
-    
+
         cy.contains(/Extra Pod Details/).click()
         cy.contains('content')
     })

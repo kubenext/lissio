@@ -1,6 +1,6 @@
-# Contributing to Octant's UI
+# Contributing to Lissio's UI
 
-This document describes how to setup your development environment to contribute to Octant's UI.
+This document describes how to setup your development environment to contribute to Lissio's UI.
 
 **Note**: Most the code related to this development is organized under the `web/` directory.
 
@@ -17,7 +17,7 @@ Our web UI is built on Node.js 10+ and npm 6+. It was generated with [Angular CL
 
 There are different ways to installing these dependencies:
 
-The most thorough way that verifies that you have the needed dependencies to build/develop both the Octant's UI and go server component is run `make ci` from the root directory. This is the command used to build a final distributable.
+The most thorough way that verifies that you have the needed dependencies to build/develop both the Lissio's UI and go server component is run `make ci` from the root directory. This is the command used to build a final distributable.
 
 To install just the UI dependencies from the root directory, we have the Makefile command `web-deps` for just npm installation.
 

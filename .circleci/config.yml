@@ -9,8 +9,8 @@ jobs:
     - run:
         name: Build
         command: |
-          docker build --build-arg NODE_VERSION=$(cat .nvmrc | cut -c 2-) -t octant-image .
-          docker run --name octant-builder octant-image
+          docker build --build-arg NODE_VERSION=$(cat .nvmrc | cut -c 2-) -t lissio-image .
+          docker run --name lissio-builder lissio-image
     - run:
         name: Setup nvm
         command: |
@@ -19,8 +19,8 @@ jobs:
     - run:
         name: Build plugin
         command: |
-          docker build -f Dockerfile.plugin -t octant-plugin .
-          docker run --name octant-sample-plugin octant-plugin
+          docker build -f Dockerfile.plugin -t lissio-plugin .
+          docker run --name lissio-sample-plugin lissio-plugin
     - run:
         name: Cluster
         command: |
@@ -37,13 +37,13 @@ jobs:
           chmod +x ./kubectl
           sudo mv ./kubectl /usr/local/bin
     - run:
-        name: Octant
+        name: Lissio
         command: |
           mkdir plugin_path
-          docker cp octant-builder:/octant .
-          docker cp octant-sample-plugin:/octant-sample-plugin ./plugin_path
-          ./octant version
-          ./octant
+          docker cp lissio-builder:/lissio .
+          docker cp lissio-sample-plugin:/lissio-sample-plugin ./plugin_path
+          ./lissio version
+          ./lissio
         environment:
           LISSIO_PLUGIN_PATH: ./plugin_path
           LISSIO_DISABLE_OPEN_BROWSER: 1

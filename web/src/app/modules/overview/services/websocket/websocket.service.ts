@@ -83,7 +83,7 @@ export class WebsocketService implements BackendService {
             tap(_ => {
               const id = this.notifierSession.pushSignal(
                 NotifierSignalType.ERROR,
-                'Lost connection to Octant service. Retrying...'
+                'Lost connection to Lissio service. Retrying...'
               );
               this.connectSignalID.next(id);
             }),

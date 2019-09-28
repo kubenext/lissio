@@ -354,7 +354,7 @@ func (d *dash) handler(ctx context.Context) (http.Handler, error) {
 	var frontendHandler http.Handler
 	frontendPath := os.Getenv("LISSIO_PROXY_FRONTEND")
 	if frontendPath == "" {
-		d.logger.Infof("Using embedded Octant frontend")
+		d.logger.Infof("Using embedded Lissio frontend")
 		// use embedded assets
 		handler, err := d.uiHandler()
 		if err != nil {
@@ -362,7 +362,7 @@ func (d *dash) handler(ctx context.Context) (http.Handler, error) {
 		}
 		frontendHandler = handler
 	} else {
-		d.logger.With("proxy-path", frontendPath).Infof("Creating reverse proxy to Octant frontend")
+		d.logger.With("proxy-path", frontendPath).Infof("Creating reverse proxy to Lissio frontend")
 		// use reverse proxy
 		proxyURL, err := url.Parse(frontendPath)
 		if err != nil {

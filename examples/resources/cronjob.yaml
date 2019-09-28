@@ -6,7 +6,7 @@ kind: CronJob
 metadata:
   name: hello
   labels:
-    project: octant
+    project: lissio
 spec:
   schedule: "*/1 * * * *"
   jobTemplate:

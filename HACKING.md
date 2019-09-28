@@ -11,11 +11,11 @@
 
 ## Quick Start
 
-    git clone git@github.com:vmware/octant.git
-    cd octant
+    git clone git@github.com:vmware/lissio.git
+    cd lissio
     make go-install  # install Go dependencies.
-    make ci-quick    # build UI, generate UI files, and create octant binary.
-    ./build/octant   # run the Octant binary you just built
+    make ci-quick    # build UI, generate UI files, and create lissio binary.
+    ./build/lissio   # run the Lissio binary you just built
 
 ## Testing
 
@@ -27,13 +27,13 @@ We generally require tests be added for all but the most trivial of changes. You
 ## Frontend
 
 When making changes to the frontend it can be helpful to have those changes trigger rebuilding the UI.
-The Octant makefile provides `make ui-client` which is an alias for `npm run start` and will listen for changes and rebuild the UI.
+The Lissio makefile provides `make ui-client` which is an alias for `npm run start` and will listen for changes and rebuild the UI.
 By default this will launch on `http://localhost:4200`.
 
 ## Backend
 
 When you are making changes to the backend you can take advantage of Go's fast compile time to build and run
-Octant in a single step. The Octant makefile provides `make ui-server` which is an alias for `go run`. Unlike the
+Lissio in a single step. The Lissio makefile provides `make ui-server` which is an alias for `go run`. Unlike the
 alias for the frontend, this does not listen for changes and does require you to stop the command and re-run it after
 saving your changes.
 

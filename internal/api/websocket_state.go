@@ -22,7 +22,7 @@ import (
 )
 
 //go:generate mockgen -destination=./fake/mock_state_manager.go -package=fake github.com/kubenext/lissio/internal/api StateManager
-//go:generate mockgen -destination=./fake/mock_lissio_client.go -package=fake github.com/kubenext/lissio/internal/api OctantClient
+//go:generate mockgen -destination=./fake/mock_lissio_client.go -package=fake github.com/kubenext/lissio/internal/api LissioClient
 
 var (
 	reContentPathNamespace = regexp.MustCompile(`^/namespace/(?P<namespace>[^/]+)/?`)
@@ -31,7 +31,7 @@ var (
 // StateManager manages states for WebsocketState.
 type StateManager interface {
 	Handlers() []controllers.ClientRequestHandler
-	Start(ctx context.Context, state controllers.State, s OctantClient)
+	Start(ctx context.Context, state controllers.State, s LissioClient)
 }
 
 func defaultStateManagers(clientID string, dashConfig config.Dash) []StateManager {
@@ -47,8 +47,8 @@ func defaultStateManagers(clientID string, dashConfig config.Dash) []StateManage
 	}
 }
 
-// OctantClient is an OctantClient.
-type OctantClient interface {
+// LissioClient is an LissioClient.
+type LissioClient interface {
 	Send(event controllers.Event)
 	ID() string
 }
@@ -92,7 +92,7 @@ func WebsocketStateManagers(managers []StateManager) WebsocketStateOption {
 // WebsocketState manages state for a websocket client.
 type WebsocketState struct {
 	dashConfig         config.Dash
-	wsClient           OctantClient
+	wsClient           LissioClient
 	contentPath        *atomicString
 	namespace          *atomicString
 	filters            []controllers.Filter
@@ -110,7 +110,7 @@ type WebsocketState struct {
 var _ controllers.State = (*WebsocketState)(nil)
 
 // NewWebsocketState creates an instance of WebsocketState.
-func NewWebsocketState(dashConfig config.Dash, actionDispatcher ActionDispatcher, wsClient OctantClient, options ...WebsocketStateOption) *WebsocketState {
+func NewWebsocketState(dashConfig config.Dash, actionDispatcher ActionDispatcher, wsClient LissioClient, options ...WebsocketStateOption) *WebsocketState {
 	defaultNamespace := dashConfig.DefaultNamespace()
 
 	w := &WebsocketState{

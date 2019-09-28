@@ -23,7 +23,7 @@ import (
 	"github.com/kubenext/lissio/internal/log"
 )
 
-func newOctantCmd() *cobra.Command {
+func newLissioCmd() *cobra.Command {
 	var namespace string
 	var uiURL string
 	var kubeConfig string

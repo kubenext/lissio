@@ -25,7 +25,7 @@ import (
 //go:generate mockgen -destination=./fake/mock_service.go -package=fake github.com/kubenext/lissio/internal/api Service
 
 const (
-	// ListenerAddrKey is the environment variable for the Octant listener address.
+	// ListenerAddrKey is the environment variable for the Lissio listener address.
 	ListenerAddrKey  = "LISSIO_LISTENER_ADDR"
 	AcceptedHostsKey = "LISSIO_ACCEPTED_HOSTS"
 	// PathPrefix is a string for the api path prefix.

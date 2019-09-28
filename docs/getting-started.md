@@ -2,28 +2,28 @@
 
 ## Environment Variables
 
-Octant is configurable through environment variables defined at runtime.
+Lissio is configurable through environment variables defined at runtime.
 
 * `KUBECONFIG` - set to non-empty location if you want to set KUBECONFIG with an environment variable.
 * `LISSIO_DISABLE_OPEN_BROWSER` - set to a non-empty value if you don't the browser launched when the dashboard start up.
 * `LISSIO_LISTENER_ADDR` - set to address you want dashboard service to start on. (e.g. `localhost:8080`)
-* `LISSIO_ACCEPTED_HOSTS` - set to comma-separated string of hosts to be accepted. (e.g. `demo.octant.example.com,awesome.octant.zr`)
+* `LISSIO_ACCEPTED_HOSTS` - set to comma-separated string of hosts to be accepted. (e.g. `demo.lissio.example.com,awesome.lissio.zr`)
 * `LISSIO_VERBOSE_CACHE` - set to a non-empty value to view cache actions
 * `LISSIO_LOCAL_CONTENT` - set to a directory and dash will serve content responses from here. An example directory lives in `examples/content`
-* `LISSIO_PLUGIN_PATH` - add a plugin directory or multiple directories separated by `:`. Plugins will load by default from `$HOME/.config/octant/plugins`
+* `LISSIO_PLUGIN_PATH` - add a plugin directory or multiple directories separated by `:`. Plugins will load by default from `$HOME/.config/lissio/plugins`
 
 **Note:** If using [fish shell](https://fishshell.com), tilde expansion may not occur when using `env` to set environment variables.
 
 ## Command Line Flags
 
-Octant is configurable through command line flags set at runtime. You can see all of the available options by
-running `octant --help`.
+Lissio is configurable through command line flags set at runtime. You can see all of the available options by
+running `lissio --help`.
 
         --client-burst int     maximum burst for client throttle (default 400)
         --client-qps float32   maximum QPS for client (default 200)
         --context string       initial context
     -c, --enable-opencensus    enable open census
-    -h, --help                 help for octant
+    -h, --help                 help for lissio
         --klog-verbosity int   klog verbosity level
         --kubeconfig string    absolute path to kubeConfig file (default "~/.kube/config")
     -n, --namespace string     initial namespace
@@ -36,11 +36,11 @@ shorthand by just adding more `v` to equal the level count or with an explicit e
 
 For example
 
-    $ octant -vvv
+    $ lissio -vvv
 
 Is equal to
 
-    $ octant --verbosity=3
+    $ lissio --verbosity=3
 
 ## Setting Up a Development Environment
 
@@ -53,7 +53,7 @@ Is equal to
 
 These build tools can be installed via Makefile with `make go-install`.
 
-A development binary can be built by `make octant-dev`.
+A development binary can be built by `make lissio-dev`.
 
 For UI changes, see the [README](/web/README.md) located in `web/`.
 

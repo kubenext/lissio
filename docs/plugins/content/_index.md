@@ -28,6 +28,6 @@ By using the components available in `/pkg/view/components`, plugins can display
 
 List channels for feedback/troubleshooting.
 
- * Slack channel (#octant)
+ * Slack channel (#lissio)
  * Email: <project-devdash@groups.vmware.com>
 

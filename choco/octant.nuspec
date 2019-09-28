@@ -2,10 +2,10 @@
 <!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
-    <id>octant</id>
+    <id>lissio</id>
     <version>0.6.0</version>
     <owners>VMware</owners>
-    <title>Octant</title>
+    <title>Lissio</title>
     <authors>Bryan Liles, see https://github.com/kubenext/lissio/graphs/contributors</authors>
     <projectUrl>https://github.com/kubenext/lissio</projectUrl>
     <packageSourceUrl>https://github.com/kubenext/lissio/blob/master/choco</packageSourceUrl>
@@ -16,12 +16,12 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectSourceUrl>https://github.com/kubenext/lissio</projectSourceUrl>
     <docsUrl>https://github.com/kubenext/lissio/tree/master/docs</docsUrl>
-    <mailingListUrl>https://groups.google.com/group/project-octant</mailingListUrl>
+    <mailingListUrl>https://groups.google.com/group/project-lissio</mailingListUrl>
     <bugTrackerUrl>https://github.com/kubenext/lissio/issues</bugTrackerUrl>
-    <tags>octant kubernetes kubectl heptio dashboard pod</tags>
+    <tags>lissio kubernetes kubectl heptio dashboard pod</tags>
     <summary>A web-based, highly extensible platform for developers to better understand the complexity of Kubernetes clusters.
 </summary>
-<description><![CDATA[Octant is a tool for developers to understand how applications run on a Kubernetes cluster. It aims to be part of the developer's toolkit for gaining insight and approaching complexity found in Kubernetes. Octant offers a combination of introspective tooling, cluster navigation, and object management along with a plugin system to further extend its capabilities.
+<description><![CDATA[Lissio is a tool for developers to understand how applications run on a Kubernetes cluster. It aims to be part of the developer's toolkit for gaining insight and approaching complexity found in Kubernetes. Lissio offers a combination of introspective tooling, cluster navigation, and object management along with a plugin system to further extend its capabilities.
 
 ## Features
 

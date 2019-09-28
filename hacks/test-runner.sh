@@ -7,7 +7,7 @@ BUILD_FRONTEND=0
 IGNORE_FILES=$(ls -p | grep -v /)
 
 is_updated() {
-    GIT_DIFF=$(git --no-pager diff --name-only HEAD~1 | sort -u | awk 'BEGIN {FS="/"} {print $1}' | uniq); 
+    GIT_DIFF=$(git --no-pager diff --name-only HEAD~1 | sort -u | awk 'BEGIN {FS="/"} {print $1}' | uniq);
     export CHANGED=$GIT_DIFF
 }
 
@@ -32,7 +32,7 @@ else
   should_build
   if [[ $BUILD_FRONTEND == 0 ]]; then
       # Backend tests only
-      make test vet octant-dev
+      make test vet lissio-dev
   else
     make web-test web-build
   fi

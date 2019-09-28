@@ -73,7 +73,7 @@ func (n NamespacesManager) Handlers() []controllers.ClientRequestHandler {
 }
 
 // Start starts the manager. It periodically generates a list of namespaces.
-func (n *NamespacesManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
+func (n *NamespacesManager) Start(ctx context.Context, state controllers.State, s LissioClient) {
 	ch := make(chan struct{}, 1)
 	defer func() {
 		close(ch)
@@ -82,7 +82,7 @@ func (n *NamespacesManager) Start(ctx context.Context, state controllers.State, 
 	n.poller.Run(ctx, ch, n.runUpdate(state, s), event.DefaultScheduleDelay)
 }
 
-func (n *NamespacesManager) runUpdate(state controllers.State, client OctantClient) PollerFunc {
+func (n *NamespacesManager) runUpdate(state controllers.State, client LissioClient) PollerFunc {
 	var previous []byte
 
 	return func(ctx context.Context) bool {

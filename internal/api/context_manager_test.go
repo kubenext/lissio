@@ -34,7 +34,7 @@ func TestContext_GenerateContexts(t *testing.T) {
 	defer controller.Finish()
 
 	state := lissioFake.NewMockState(controller)
-	lissioClient := fake.NewMockOctantClient(controller)
+	lissioClient := fake.NewMockLissioClient(controller)
 
 	ev := controllers.Event{
 		Type: "eventType",

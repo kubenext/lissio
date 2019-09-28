@@ -67,7 +67,7 @@ type Plugin struct {
 	serverFactory func(service plugin.Service)
 }
 
-// Register registers a plugin with Octant.
+// Register registers a plugin with Lissio.
 func Register(name, description string, capabilities *plugin.Capabilities, options ...PluginOption) (*Plugin, error) {
 	router := NewRouter()
 

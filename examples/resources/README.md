@@ -1,3 +1,3 @@
 # resources
 
-These are example resources you can use to test octant
+These are example resources you can use to test lissio

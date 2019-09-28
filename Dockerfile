@@ -27,7 +27,7 @@ ENV GOFLAGS=-mod=vendor GO111MODULE=on
 RUN make go-install
 RUN go generate ./web
 RUN make generate
-RUN make octant-dev
+RUN make lissio-dev
 
 # ------------------------------------------------------------------------------
 # Running container
@@ -40,8 +40,8 @@ RUN apt-get update && \
         ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-COPY --from=builder /workspace/build/octant /octant
-RUN chmod +x /octant
+COPY --from=builder /workspace/build/lissio /lissio
+RUN chmod +x /lissio
 
 RUN useradd -s /sbin/nologin -M -u 10000 -U user
 USER user

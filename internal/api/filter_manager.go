@@ -36,7 +36,7 @@ func NewFilterManager() *FilterManager {
 }
 
 // Start starts the manager. Current is a no-op.
-func (fm *FilterManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
+func (fm *FilterManager) Start(ctx context.Context, state controllers.State, s LissioClient) {
 }
 
 // Handlers returns a slice of handlers.

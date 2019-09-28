@@ -13,7 +13,7 @@ import (
 	"github.com/kubenext/lissio/pkg/view/component"
 )
 
-// Handler is the plugin service helper handler. Functions on this struct are called from Octant.
+// Handler is the plugin service helper handler. Functions on this struct are called from Lissio.
 type Handler struct {
 	HandlerFuncs
 
@@ -39,7 +39,7 @@ func (p *Handler) Validate() error {
 	return nil
 }
 
-// Register registers a plugin with Octant.
+// Register registers a plugin with Lissio.
 func (p *Handler) Register(ctx context.Context, dashboardAPIAddress string) (plugin.Metadata, error) {
 	p.mu.Lock()
 	defer p.mu.Unlock()

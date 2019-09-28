@@ -1,11 +1,11 @@
 release:
   draft: true
   prerelease: auto
-project_name: octant
+project_name: lissio
 builds:
   -
-    main: ./cmd/octant/main.go
-    binary: octant
+    main: ./cmd/lissio/main.go
+    binary: lissio
     env:
       - CGO_ENABLED=0
     goos:
@@ -22,7 +22,7 @@ nfpms:
       - rpm
     vendor: "VMware"
     homepage: "https://github.com/kubenext/lissio"
-    maintainer: Octant Maintainers <project-octant@googlegroups.com>
+    maintainer: Lissio Maintainers <project-lissio@googlegroups.com>
     description: "A web-based, highly extensible platform for developers to better understand the complexity of Kubernetes clusters"
     license: "Apache 2.0"
     name_template: "{{.ProjectName}}_{{.Version}}_{{.Os}}-{{.Arch}}"

@@ -77,7 +77,7 @@ func (n NavigationManager) Handlers() []controllers.ClientRequestHandler {
 }
 
 // Start starts the manager. It periodically generates navigation updates.
-func (n *NavigationManager) Start(ctx context.Context, state controllers.State, s OctantClient) {
+func (n *NavigationManager) Start(ctx context.Context, state controllers.State, s LissioClient) {
 	ch := make(chan struct{}, 1)
 	defer func() {
 		close(ch)
@@ -86,7 +86,7 @@ func (n *NavigationManager) Start(ctx context.Context, state controllers.State, 
 	n.poller.Run(ctx, ch, n.runUpdate(state, s), event.DefaultScheduleDelay)
 }
 
-func (n *NavigationManager) runUpdate(state controllers.State, client OctantClient) PollerFunc {
+func (n *NavigationManager) runUpdate(state controllers.State, client LissioClient) PollerFunc {
 	var previous []byte
 
 	return func(ctx context.Context) bool {

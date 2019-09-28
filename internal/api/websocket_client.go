@@ -51,7 +51,7 @@ type WebsocketClient struct {
 	id       uuid.UUID
 }
 
-var _ OctantClient = (*WebsocketClient)(nil)
+var _ LissioClient = (*WebsocketClient)(nil)
 
 // NewWebsocketClient creates an instance of WebsocketClient.
 func NewWebsocketClient(ctx context.Context, conn *websocket.Conn, dashConfig config.Dash, actionDispatcher ActionDispatcher, id uuid.UUID) *WebsocketClient {

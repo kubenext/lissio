@@ -13,7 +13,7 @@ import (
 	"github.com/kubenext/lissio/pkg/view/component"
 )
 
-// ModuleProxy is a proxy that satisfies Octant module requirements. It allows plugins to behave as if they
+// ModuleProxy is a proxy that satisfies Lissio module requirements. It allows plugins to behave as if they
 // are internal modules.
 type ModuleProxy struct {
 	Metadata   *Metadata

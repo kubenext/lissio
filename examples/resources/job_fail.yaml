@@ -6,7 +6,7 @@ kind: Job
 metadata:
   generateName: job-fail-
   labels:
-    octant-scenario: failed-job
+    lissio-scenario: failed-job
 spec:
   template:
     spec:

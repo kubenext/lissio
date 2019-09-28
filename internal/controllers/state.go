@@ -16,7 +16,7 @@ import (
 // UpdateCancelFunc cancels the update.
 type UpdateCancelFunc func()
 
-// State represents Octant's view state.
+// State represents Lissio's view state.
 type State interface {
 	// SetContentPath sets the content path.
 	SetContentPath(string)
