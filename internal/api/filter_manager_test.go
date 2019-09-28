@@ -17,7 +17,7 @@ import (
 
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/controllers"
-	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
+	lissioFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -45,7 +45,7 @@ func TestFilterManager_AddFilter(t *testing.T) {
 	controller := gomock.NewController(t)
 	defer controller.Finish()
 
-	state := octantFake.NewMockState(controller)
+	state := lissioFake.NewMockState(controller)
 	state.EXPECT().AddFilter(controllers.Filter{Key: "foo", Value: "bar"})
 	state.EXPECT().SendAlert(gomock.Any())
 
@@ -65,7 +65,7 @@ func TestFilterManager_ClearFilters(t *testing.T) {
 	controller := gomock.NewController(t)
 	defer controller.Finish()
 
-	state := octantFake.NewMockState(controller)
+	state := lissioFake.NewMockState(controller)
 	state.EXPECT().SetFilters([]controllers.Filter{})
 	state.EXPECT().SendAlert(gomock.Any())
 
@@ -79,7 +79,7 @@ func TestFilterManager_RemoveFilter(t *testing.T) {
 	controller := gomock.NewController(t)
 	defer controller.Finish()
 
-	state := octantFake.NewMockState(controller)
+	state := lissioFake.NewMockState(controller)
 	state.EXPECT().RemoveFilter(controllers.Filter{Key: "foo", Value: "bar"})
 	state.EXPECT().SendAlert(gomock.Any())
 

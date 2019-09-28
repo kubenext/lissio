@@ -271,7 +271,7 @@ func newWebsocketStateMocks(t *testing.T, namespace string) *websocketStateMocks
 	dashConfig.EXPECT().DefaultNamespace().Return(namespace)
 	dashConfig.EXPECT().ModuleManager().Return(moduleManager).AnyTimes()
 	dashConfig.EXPECT().Logger().Return(log.NopLogger()).AnyTimes()
-	octantClient := fake.NewMockOctantClient(controller)
+	lissioClient := fake.NewMockOctantClient(controller)
 	stateManager := fake.NewMockStateManager(controller)
 	actionDispatcher := fake.NewMockActionDispatcher(controller)
 
@@ -280,7 +280,7 @@ func newWebsocketStateMocks(t *testing.T, namespace string) *websocketStateMocks
 		module:           m,
 		moduleManager:    moduleManager,
 		dashConfig:       dashConfig,
-		wsClient:         octantClient,
+		wsClient:         lissioClient,
 		stateManager:     stateManager,
 		actionDispatcher: actionDispatcher,
 	}

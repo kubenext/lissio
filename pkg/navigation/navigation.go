@@ -20,7 +20,7 @@ import (
 	"github.com/kubenext/lissio/internal/log"
 	"github.com/kubenext/lissio/pkg/icon"
 	"github.com/kubenext/lissio/pkg/store"
-	octantUnstructured "github.com/kubenext/lissio/thirdparty/unstructured"
+	lissioUnstructured "github.com/kubenext/lissio/thirdparty/unstructured"
 )
 
 // Option is an option for configuring navigation.
@@ -144,7 +144,7 @@ func CustomResourceDefinitions(ctx context.Context, o store.Store) ([]*apiextv1b
 		// NOTE: (bryanl) vendored converter can't convert from int64 to float64. Watching
 		// https://github.com/kubernetes-sigs/yaml/pull/14 to see when it gets pulled into
 		// a release so Octant can switch back.
-		if err := octantUnstructured.DefaultUnstructuredConverter.FromUnstructured(rawList.Items[i].Object, crd); err != nil {
+		if err := lissioUnstructured.DefaultUnstructuredConverter.FromUnstructured(rawList.Items[i].Object, crd); err != nil {
 			logger.Errorf("%v", errors.Wrapf(errors.Wrapf(err, "converting unstructured object to custom resource definition"), rawList.Items[i].GetName()))
 			continue
 		}

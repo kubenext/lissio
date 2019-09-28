@@ -75,8 +75,8 @@ func Test_AvailablePlugins(t *testing.T) {
 
 			expected := []string{
 				"/example/test/e-plugin",
-				"/home/user/.config/octant/plugins/a-plugin",
-				"/home/user/.config/octant/plugins/z-plugin",
+				"/home/user/.config/lissio/plugins/a-plugin",
+				"/home/user/.config/lissio/plugins/z-plugin",
 			}
 
 			assert.Equal(t, expected, got)
@@ -102,7 +102,7 @@ func Test_AvailablePlugins(t *testing.T) {
 			require.NoError(t, err)
 
 			expected := []string{
-				"/home/xdg_config_path/octant/plugins/a-plugin",
+				"/home/xdg_config_path/lissio/plugins/a-plugin",
 			}
 
 			assert.Equal(t, expected, got)

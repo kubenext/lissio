@@ -16,7 +16,7 @@ import (
 	"github.com/kubenext/lissio/internal/api/fake"
 	clusterFake "github.com/kubenext/lissio/internal/cluster/fake"
 	configFake "github.com/kubenext/lissio/internal/config/fake"
-	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
+	lissioFake "github.com/kubenext/lissio/internal/controllers/fake"
 )
 
 func TestNamespacesManager_GenerateNamespaces(t *testing.T) {
@@ -25,12 +25,12 @@ func TestNamespacesManager_GenerateNamespaces(t *testing.T) {
 
 	dashConfig := configFake.NewMockDash(controller)
 
-	state := octantFake.NewMockState(controller)
-	octantClient := fake.NewMockOctantClient(controller)
+	state := lissioFake.NewMockState(controller)
+	lissioClient := fake.NewMockOctantClient(controller)
 
 	namespaces := []string{"default"}
 
-	octantClient.EXPECT().
+	lissioClient.EXPECT().
 		Send(api.CreateNamespacesEvent(namespaces))
 
 	poller := api.NewSingleRunPoller()
@@ -41,7 +41,7 @@ func TestNamespacesManager_GenerateNamespaces(t *testing.T) {
 		}))
 
 	ctx := context.Background()
-	manager.Start(ctx, state, octantClient)
+	manager.Start(ctx, state, lissioClient)
 }
 
 func TestNamespacesGenerator(t *testing.T) {

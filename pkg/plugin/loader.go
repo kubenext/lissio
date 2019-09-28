@@ -16,7 +16,7 @@ import (
 	"github.com/spf13/afero"
 )
 
-const configDir = "octant"
+const configDir = "lissio"
 
 // Config is configuration for the plugin manager.
 type Config interface {

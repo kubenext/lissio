@@ -35,9 +35,9 @@ func newOctantCmd() *cobra.Command {
 	var clientBurst int
 
 	lissioCmd := &cobra.Command{
-		Use:   "octant",
-		Short: "octant kubernetes dashboard",
-		Long:  "octant is a dashboard for high bandwidth cluster analysis operations",
+		Use:   "lissio",
+		Short: "lissio kubernetes dashboard",
+		Long:  "lissio is a dashboard for high bandwidth cluster analysis operations",
 		Run: func(cmd *cobra.Command, args []string) {
 			ctx, cancel := context.WithCancel(context.Background())
 			defer cancel()

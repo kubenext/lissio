@@ -15,7 +15,7 @@ import (
 	"github.com/kubenext/lissio/internal/api/fake"
 	configFake "github.com/kubenext/lissio/internal/config/fake"
 	"github.com/kubenext/lissio/internal/controllers"
-	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
+	lissioFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/internal/log"
 )
 
@@ -33,13 +33,13 @@ func TestContext_GenerateContexts(t *testing.T) {
 	controller := gomock.NewController(t)
 	defer controller.Finish()
 
-	state := octantFake.NewMockState(controller)
-	octantClient := fake.NewMockOctantClient(controller)
+	state := lissioFake.NewMockState(controller)
+	lissioClient := fake.NewMockOctantClient(controller)
 
 	ev := controllers.Event{
 		Type: "eventType",
 	}
-	octantClient.EXPECT().Send(ev)
+	lissioClient.EXPECT().Send(ev)
 
 	logger := log.NopLogger()
 
@@ -55,5 +55,5 @@ func TestContext_GenerateContexts(t *testing.T) {
 		api.WithContextGeneratorPoll(poller))
 
 	ctx := context.Background()
-	manager.Start(ctx, state, octantClient)
+	manager.Start(ctx, state, lissioClient)
 }

@@ -13,7 +13,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 
-	octantunstructured "github.com/kubenext/lissio/thirdparty/unstructured"
+	lissiounstructured "github.com/kubenext/lissio/thirdparty/unstructured"
 )
 
 // GetAs gets an object from the object store by key. If the object is not found,
@@ -31,7 +31,7 @@ func GetAs(ctx context.Context, o Store, key Key, as interface{}) (bool, error) 
 	// NOTE: (bryanl) vendored converter can't convert from int64 to float64. Watching
 	// https://github.com/kubernetes-sigs/yaml/pull/14 to see when it gets pulled into
 	// a release so Octant can switch back.
-	if err := octantunstructured.DefaultUnstructuredConverter.FromUnstructured(u.Object, as); err != nil {
+	if err := lissiounstructured.DefaultUnstructuredConverter.FromUnstructured(u.Object, as); err != nil {
 		return false, errors.Wrap(err, "unable to convert object to unstructured")
 	}
 

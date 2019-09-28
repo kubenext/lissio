@@ -14,12 +14,12 @@ GOINSTALL=$(GOCMD) install
 VERSION ?= v0.7.0
 
 ifdef XDG_CONFIG_HOME
-	LISSIO_PLUGINSTUB_DIR ?= ${XDG_CONFIG_HOME}/octant/plugins
+	LISSIO_PLUGINSTUB_DIR ?= ${XDG_CONFIG_HOME}/lissio/plugins
 # Determine in on windows
 else ifeq ($(OS),Windows_NT)
-	LISSIO_PLUGINSTUB_DIR ?= ${LOCALAPPDATA}/octant/plugins
+	LISSIO_PLUGINSTUB_DIR ?= ${LOCALAPPDATA}/lissio/plugins
 else
-	LISSIO_PLUGINSTUB_DIR ?= ${HOME}/.config/octant/plugins
+	LISSIO_PLUGINSTUB_DIR ?= ${HOME}/.config/lissio/plugins
 endif
 
 .PHONY: version
@@ -38,12 +38,12 @@ vet:
 	@echo "-> $@"
 	@env go vet ./internal/... ./pkg/...
 
-octant-dev:
+lissio-dev:
 	@mkdir -p ./build
-	@env $(GOBUILD) -o build/octant $(GO_FLAGS) -v ./cmd/octant
+	@env $(GOBUILD) -o build/lissio $(GO_FLAGS) -v ./cmd/lissio
 
-octant-docker:
-	@env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o /octant $(GO_FLAGS) -v ./cmd/octant
+lissio-docker:
+	@env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 $(GOBUILD) -o /lissio $(GO_FLAGS) -v ./cmd/lissio
 
 generate:
 	@echo "-> $@"
@@ -74,7 +74,7 @@ web-test: web-deps
 	@cd web; npm run test:headless
 
 ui-server:
-	LISSIO_DISABLE_OPEN_BROWSER=1 LISSIO_LISTENER_ADDR=localhost:7777 $(GOCMD) run ./cmd/octant/main.go $(LISSIO_FLAGS)
+	LISSIO_DISABLE_OPEN_BROWSER=1 LISSIO_LISTENER_ADDR=localhost:7777 $(GOCMD) run ./cmd/lissio/main.go $(LISSIO_FLAGS)
 
 ui-client:
 	@cd web; API_BASE=http://localhost:7777 npm run start
@@ -92,18 +92,18 @@ release:
 	git push --follow-tags
 
 .PHONY: ci
-ci: test vet web-test web-build octant-dev
+ci: test vet web-test web-build lissio-dev
 
 .PHONY: ci-quick
 ci-quick:
 	@cd web; npm run build
 	@go generate ./web
-	make octant-dev
+	make lissio-dev
 
 install-test-plugin:
 	@echo $(LISSIO_PLUGINSTUB_DIR)
 	mkdir -p $(LISSIO_PLUGINSTUB_DIR)
-	go build -o $(LISSIO_PLUGINSTUB_DIR)/octant-sample-plugin github.com/kubenext/lissio/cmd/octant-sample-plugin
+	go build -o $(LISSIO_PLUGINSTUB_DIR)/lissio-sample-plugin github.com/kubenext/lissio/cmd/lissio-sample-plugin
 
 .PHONY:
 build-deps:

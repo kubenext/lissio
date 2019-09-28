@@ -15,7 +15,7 @@ import (
 	"github.com/kubenext/lissio/internal/api"
 	"github.com/kubenext/lissio/internal/api/fake"
 	"github.com/kubenext/lissio/internal/controllers"
-	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
+	lissioFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/internal/log"
 	moduleFake "github.com/kubenext/lissio/internal/module/fake"
 	"github.com/kubenext/lissio/pkg/action"
@@ -44,7 +44,7 @@ func TestContentManager_GenerateContent(t *testing.T) {
 	params := map[string][]string{}
 
 	moduleManager := moduleFake.NewMockManagerInterface(controller)
-	state := octantFake.NewMockState(controller)
+	state := lissioFake.NewMockState(controller)
 
 	state.EXPECT().GetContentPath().Return("/path")
 	state.EXPECT().GetNamespace().Return("default")
@@ -53,13 +53,13 @@ func TestContentManager_GenerateContent(t *testing.T) {
 		fn("foo")
 		return func() {}
 	})
-	octantClient := fake.NewMockOctantClient(controller)
+	lissioClient := fake.NewMockOctantClient(controller)
 
 	contentResponse := component.ContentResponse{
 		IconName: "fake",
 	}
 	contentEvent := api.CreateContentEvent(contentResponse, "default", "/path", params)
-	octantClient.EXPECT().Send(contentEvent).AnyTimes()
+	lissioClient.EXPECT().Send(contentEvent).AnyTimes()
 
 	logger := log.NopLogger()
 
@@ -73,7 +73,7 @@ func TestContentManager_GenerateContent(t *testing.T) {
 		api.WithContentGeneratorPoller(poller))
 
 	ctx := context.Background()
-	manager.Start(ctx, state, octantClient)
+	manager.Start(ctx, state, lissioClient)
 }
 
 func TestContentManager_SetContentPath(t *testing.T) {
@@ -85,7 +85,7 @@ func TestContentManager_SetContentPath(t *testing.T) {
 
 	moduleManager := moduleFake.NewMockManagerInterface(controller)
 
-	state := octantFake.NewMockState(controller)
+	state := lissioFake.NewMockState(controller)
 	state.EXPECT().SetContentPath("/path")
 
 	logger := log.NopLogger()
@@ -109,7 +109,7 @@ func TestContentManager_SetNamespace(t *testing.T) {
 
 	moduleManager := moduleFake.NewMockManagerInterface(controller)
 
-	state := octantFake.NewMockState(controller)
+	state := lissioFake.NewMockState(controller)
 	state.EXPECT().SetNamespace("kube-system")
 
 	logger := log.NopLogger()
@@ -128,7 +128,7 @@ func TestContentManager_SetQueryParams(t *testing.T) {
 	tests := []struct {
 		name    string
 		payload action.Payload
-		setup   func(state *octantFake.MockState)
+		setup   func(state *lissioFake.MockState)
 	}{
 		{
 			name: "single filter",
@@ -137,7 +137,7 @@ func TestContentManager_SetQueryParams(t *testing.T) {
 					"filters": "foo:bar",
 				},
 			},
-			setup: func(state *octantFake.MockState) {
+			setup: func(state *lissioFake.MockState) {
 				state.EXPECT().SetFilters([]controllers.Filter{
 					{Key: "foo", Value: "bar"},
 				})
@@ -153,7 +153,7 @@ func TestContentManager_SetQueryParams(t *testing.T) {
 					},
 				},
 			},
-			setup: func(state *octantFake.MockState) {
+			setup: func(state *lissioFake.MockState) {
 				state.EXPECT().SetFilters([]controllers.Filter{
 					{Key: "foo", Value: "bar"},
 					{Key: "baz", Value: "qux"},
@@ -172,7 +172,7 @@ func TestContentManager_SetQueryParams(t *testing.T) {
 
 			moduleManager := moduleFake.NewMockManagerInterface(controller)
 
-			state := octantFake.NewMockState(controller)
+			state := lissioFake.NewMockState(controller)
 			require.NotNil(t, test.setup)
 			test.setup(state)
 

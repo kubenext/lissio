@@ -18,7 +18,7 @@ func init() {
 	log.SetFlags(log.Flags() &^ (log.Ldate | log.Ltime))
 }
 
-// Execute executes octant.
+// Execute executes lissio.
 func Execute(version string, gitCommit string, buildTime string) {
 	rootCmd := newRoot(version, gitCommit, buildTime)
 	if err := rootCmd.Execute(); err != nil {

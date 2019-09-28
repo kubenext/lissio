@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/require"
 
 	"github.com/kubenext/lissio/internal/api"
-	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
+	lissioFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/pkg/action"
 )
 
@@ -25,7 +25,7 @@ func TestActionRequestManager_PerformAction(t *testing.T) {
 	controller := gomock.NewController(t)
 	defer controller.Finish()
 
-	state := octantFake.NewMockState(controller)
+	state := lissioFake.NewMockState(controller)
 
 	manager := api.NewActionRequestManager()
 

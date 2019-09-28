@@ -423,7 +423,7 @@ func enableOpenCensus() error {
 	je, err := jaeger.NewExporter(jaeger.Options{
 		AgentEndpoint: agentEndpointURI,
 		Process: jaeger.Process{
-			ServiceName: "octant",
+			ServiceName: "lissio",
 		},
 	})
 

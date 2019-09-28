@@ -24,7 +24,7 @@ type ContentOptions struct {
 	LabelSet *labels.Set
 }
 
-// Module is an octant plugin.
+// Module is an lissio plugin.
 type Module interface {
 	// Name is the name of the module.
 	Name() string

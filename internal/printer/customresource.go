@@ -17,7 +17,7 @@ import (
 	"k8s.io/client-go/util/jsonpath"
 
 	"github.com/kubenext/lissio/internal/link"
-	octantStrings "github.com/kubenext/lissio/internal/util/strings"
+	lissioStrings "github.com/kubenext/lissio/internal/util/strings"
 	"github.com/kubenext/lissio/pkg/view/component"
 )
 
@@ -74,7 +74,7 @@ func printCustomCRDListTable(
 	table := component.NewTable(crdName, "We couldn't find any custom resources!", component.NewTableCols("Name", "Labels"))
 	for _, column := range crd.Spec.AdditionalPrinterColumns {
 		name := column.Name
-		if octantStrings.Contains(column.Name, []string{"Name", "Labels", "Age"}) {
+		if lissioStrings.Contains(column.Name, []string{"Name", "Labels", "Age"}) {
 			name = fmt.Sprintf("Resource %s", column.Name)
 		}
 		table.AddColumn(name)

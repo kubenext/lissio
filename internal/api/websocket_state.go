@@ -22,7 +22,7 @@ import (
 )
 
 //go:generate mockgen -destination=./fake/mock_state_manager.go -package=fake github.com/kubenext/lissio/internal/api StateManager
-//go:generate mockgen -destination=./fake/mock_octant_client.go -package=fake github.com/kubenext/lissio/internal/api OctantClient
+//go:generate mockgen -destination=./fake/mock_lissio_client.go -package=fake github.com/kubenext/lissio/internal/api OctantClient
 
 var (
 	reContentPathNamespace = regexp.MustCompile(`^/namespace/(?P<namespace>[^/]+)/?`)

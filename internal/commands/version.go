@@ -16,7 +16,7 @@ func newVersionCmd(version string, gitCommit string, buildTime string) *cobra.Co
 	versionCmd := &cobra.Command{
 		Use:   "version",
 		Short: "Show version",
-		Long:  "Version for octant binary",
+		Long:  "Version for lissio binary",
 		Run: func(cmd *cobra.Command, args []string) {
 			out := cmd.OutOrStdout()
 

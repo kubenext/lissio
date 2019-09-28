@@ -16,7 +16,7 @@ import (
 	"github.com/kubenext/lissio/internal/api/fake"
 	configFake "github.com/kubenext/lissio/internal/config/fake"
 	"github.com/kubenext/lissio/internal/controllers"
-	octantFake "github.com/kubenext/lissio/internal/controllers/fake"
+	lissioFake "github.com/kubenext/lissio/internal/controllers/fake"
 	"github.com/kubenext/lissio/internal/module"
 	moduleFake "github.com/kubenext/lissio/internal/module/fake"
 	"github.com/kubenext/lissio/pkg/navigation"
@@ -28,14 +28,14 @@ func TestNavigationManager_GenerateNavigation(t *testing.T) {
 
 	dashConfig := configFake.NewMockDash(controller)
 
-	state := octantFake.NewMockState(controller)
+	state := lissioFake.NewMockState(controller)
 	state.EXPECT().GetContentPath().Return("/path")
 
-	octantClient := fake.NewMockOctantClient(controller)
+	lissioClient := fake.NewMockOctantClient(controller)
 
 	sections := []navigation.Navigation{{Title: "module"}}
 
-	octantClient.EXPECT().
+	lissioClient.EXPECT().
 		Send(api.CreateNavigationEvent(sections, "/path"))
 
 	poller := api.NewSingleRunPoller()
@@ -47,19 +47,19 @@ func TestNavigationManager_GenerateNavigation(t *testing.T) {
 	)
 
 	ctx := context.Background()
-	manager.Start(ctx, state, octantClient)
+	manager.Start(ctx, state, lissioClient)
 }
 
 func TestNavigationGenerator(t *testing.T) {
 	tests := []struct {
 		name     string
-		setup    func(controller *gomock.Controller) (*configFake.MockDash, *octantFake.MockState)
+		setup    func(controller *gomock.Controller) (*configFake.MockDash, *lissioFake.MockState)
 		isErr    bool
 		expected []navigation.Navigation
 	}{
 		{
 			name: "in general",
-			setup: func(controller *gomock.Controller) (*configFake.MockDash, *octantFake.MockState) {
+			setup: func(controller *gomock.Controller) (*configFake.MockDash, *lissioFake.MockState) {
 				m := moduleFake.NewMockModule(controller)
 				m.EXPECT().ContentPath().Return("/module")
 				m.EXPECT().Name().Return("module").AnyTimes()
@@ -75,7 +75,7 @@ func TestNavigationGenerator(t *testing.T) {
 				dashConfig := configFake.NewMockDash(controller)
 				dashConfig.EXPECT().ModuleManager().Return(moduleManager)
 
-				state := octantFake.NewMockState(controller)
+				state := lissioFake.NewMockState(controller)
 				state.EXPECT().GetNamespace().Return("default")
 
 				return dashConfig, state

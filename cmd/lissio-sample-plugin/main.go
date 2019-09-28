@@ -52,7 +52,7 @@ func main() {
 	}
 
 	// The plugin can log and the log messages will show up in Octant.
-	log.Printf("octant-sample-plugin is starting")
+	log.Printf("lissio-sample-plugin is starting")
 	p.Serve()
 }
 
@@ -114,7 +114,7 @@ func handlePrint(request *service.PrintRequest) (plugin.PrintResponse, error) {
 	// Octant has a component library that can be used to build content for a plugin.
 	// In this case, the plugin is creating a card.
 	podCard := component.NewCard(fmt.Sprintf("Extra Output for %s", u.GetName()))
-	podCard.SetBody(component.NewMarkdownText("This output was generated from _octant-sample-plugin_"))
+	podCard.SetBody(component.NewMarkdownText("This output was generated from _lissio-sample-plugin_"))
 
 	msg := fmt.Sprintf("update from plugin at %s", time.Now().Format(time.RFC3339))
 
