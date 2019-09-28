@@ -1,4 +1,4 @@
-module github.com/vmware/octant
+module github.com/kubenext/lissio
 
 go 1.12
 
