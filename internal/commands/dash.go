@@ -34,7 +34,7 @@ func newOctantCmd() *cobra.Command {
 	var clientQPS float32
 	var clientBurst int
 
-	octantCmd := &cobra.Command{
+	lissioCmd := &cobra.Command{
 		Use:   "octant",
 		Short: "octant kubernetes dashboard",
 		Long:  "octant is a dashboard for high bandwidth cluster analysis operations",
@@ -104,23 +104,23 @@ func newOctantCmd() *cobra.Command {
 		},
 	}
 
-	octantCmd.Flags().StringVarP(&namespace, "namespace", "n", "", "initial namespace")
-	octantCmd.Flags().StringVar(&uiURL, "ui-url", "", "dashboard url")
-	octantCmd.Flags().CountVarP(&verboseLevel, "verbosity", "v", "verbosity level")
-	octantCmd.Flags().BoolVarP(&enableOpenCensus, "enable-opencensus", "c", false, "enable open census")
-	octantCmd.Flags().StringVarP(&initialContext, "context", "", "", "initial context")
-	octantCmd.Flags().IntVarP(&klogVerbosity, "klog-verbosity", "", 0, "klog verbosity level")
-	octantCmd.Flags().Float32VarP(&clientQPS, "client-qps", "", 200, "maximum QPS for client")
-	octantCmd.Flags().IntVarP(&clientBurst, "client-burst", "", 400, "maximum burst for client throttle")
+	lissioCmd.Flags().StringVarP(&namespace, "namespace", "n", "", "initial namespace")
+	lissioCmd.Flags().StringVar(&uiURL, "ui-url", "", "dashboard url")
+	lissioCmd.Flags().CountVarP(&verboseLevel, "verbosity", "v", "verbosity level")
+	lissioCmd.Flags().BoolVarP(&enableOpenCensus, "enable-opencensus", "c", false, "enable open census")
+	lissioCmd.Flags().StringVarP(&initialContext, "context", "", "", "initial context")
+	lissioCmd.Flags().IntVarP(&klogVerbosity, "klog-verbosity", "", 0, "klog verbosity level")
+	lissioCmd.Flags().Float32VarP(&clientQPS, "client-qps", "", 200, "maximum QPS for client")
+	lissioCmd.Flags().IntVarP(&clientBurst, "client-burst", "", 400, "maximum burst for client throttle")
 
 	kubeConfig = os.Getenv("KUBECONFIG")
 	if kubeConfig == "" {
 		kubeConfig = clientcmd.NewDefaultClientConfigLoadingRules().GetDefaultFilename()
 	}
 
-	octantCmd.Flags().StringVar(&kubeConfig, "kubeconfig", kubeConfig, "absolute path to kubeConfig file")
+	lissioCmd.Flags().StringVar(&kubeConfig, "kubeconfig", kubeConfig, "absolute path to kubeConfig file")
 
-	return octantCmd
+	return lissioCmd
 }
 
 // Returns a new zap logger, setting level according to the provided
