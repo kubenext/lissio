@@ -1,0 +1,62 @@
+---
+kind: pipeline
+name: default
+
+workspace:
+  base: /go
+  path: src/github.com/vmware/octant
+
+steps:
+  - name: fetch
+    image: docker:git
+    commands:
+      - git fetch --tags
+    when:
+      event:
+      - tag
+  - name: frontend
+    image: sfoo/node-chrome:0.0.2
+    commands:
+      - cd web
+      - npm ci
+      - npm run-script build
+      - npm run lint
+      - npm run test:headless
+  - name: backend
+    image: golang:1.13
+    environment:
+      GOFLAGS: -mod=vendor
+      GO111MODULE: on
+    commands:
+      - make go-install
+      - make test
+      - go generate ./web
+      - make vet
+    depends_on:
+    - frontend
+  - name: build
+    image: golang:1.13
+    environment:
+      CGO_ENABLED: 0
+    commands:
+      - make octant-dev
+    depends_on:
+    - frontend
+    - backend
+  - name: release
+    environment:
+      GITHUB_TOKEN:
+        from_secret: github_token
+    when:
+      event:
+        - tag
+    image: goreleaser/goreleaser:v0.113-cgo
+    commands:
+      - /bin/bash ci/drone-deploy.sh
+    depends_on:
+    - build
+---
+kind: signature
+hmac: 58b44a6cf2de776daa8198c0590a36ec2f4a8f6f3b5be4e6e1b3878a6d87c521
+
+...
