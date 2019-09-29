@@ -8,6 +8,7 @@ package dash
 import (
 	"context"
 	"fmt"
+	"github.com/kubenext/lissio/internal/modules/servicemesh"
 	"net"
 	"net/http"
 	"net/http/httputil"
@@ -236,6 +237,10 @@ func initModules(ctx context.Context, dashConfig config.Dash, namespace string) 
 		applicationsModule := applications.New(ctx, applicationsOptions)
 		list = append(list, applicationsModule)
 	}
+
+	servicemeshOptions := servicemesh.Options{DashConfig: dashConfig}
+	servicemeshModule := servicemesh.New(ctx, servicemeshOptions)
+	list = append(list, servicemeshModule)
 
 	overviewOptions := overview.Options{
 		Namespace:  namespace,
