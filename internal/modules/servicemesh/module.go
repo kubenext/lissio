@@ -35,9 +35,9 @@ var _ module.Module = (*Module)(nil)
 // New creates an instance of module.
 func New(ctx context.Context, options Options) *Module {
 	pm := describer.NewPathMatcher("servicemesh")
-	//for _, pf := range rootDescriber.PathFilters() {
-	//	pm.Register(ctx, pf)
-	//}
+	for _, pf := range rootDescriber.PathFilters() {
+		pm.Register(ctx, pf)
+	}
 	return &Module{
 		Options:     options,
 		pathMatcher: pm,
