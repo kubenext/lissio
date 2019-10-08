@@ -15,6 +15,7 @@ import (
 	authorizationv1 "k8s.io/api/authorization/v1"
 
 	"github.com/kubenext/lissio/internal/cluster"
+	internalErr "github.com/kubenext/lissio/internal/errors"
 	"github.com/kubenext/lissio/pkg/store"
 )
 
@@ -141,7 +142,7 @@ func (r *resourceAccess) HasAccess(ctx context.Context, key store.Key, verb stri
 	}
 
 	if !access {
-		return &AccessError{Key: aKey}
+		return internalErr.NewAccessError(key, verb, err)
 	}
 
 	return nil
