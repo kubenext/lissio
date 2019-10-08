@@ -8,6 +8,7 @@ package dash
 import (
 	"context"
 	"fmt"
+	internalErr "github.com/kubenext/lissio/internal/errors"
 	"github.com/kubenext/lissio/internal/modules/servicemesh"
 	"net"
 	"net/http"
@@ -96,7 +97,12 @@ func Run(ctx context.Context, logger log.Logger, shutdownCh chan bool, options O
 		return errors.Wrap(err, "initializing store")
 	}
 
-	crdWatcher, err := describer.NewDefaultCRDWatcher(ctx, appObjectStore)
+	errorStore, err := internalErr.NewErrorStore()
+	if err != nil {
+		return errors.Wrap(err, "initializing error store")
+	}
+
+	crdWatcher, err := describer.NewDefaultCRDWatcher(ctx, appObjectStore, errorStore)
 	if err != nil {
 		return errors.Wrap(err, "initializing CRD watcher")
 	}
@@ -139,6 +145,7 @@ func Run(ctx context.Context, logger log.Logger, shutdownCh chan bool, options O
 		logger,
 		moduleManager,
 		appObjectStore,
+		errorStore,
 		pluginManager,
 		portForwarder,
 		options.Context,

@@ -10,6 +10,7 @@ import (
 
 	"github.com/kubenext/lissio/pkg/store"
 
+	internalErr "github.com/kubenext/lissio/internal/errors"
 	"github.com/pkg/errors"
 	apiextv1beta1 "k8s.io/apiextensions-apiserver/pkg/apis/apiextensions/v1beta1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
@@ -77,6 +78,8 @@ type Dash interface {
 
 	ObjectStore() store.Store
 
+	ErrorStore() internalErr.ErrorStore
+
 	Logger() log.Logger
 
 	PluginManager() plugin.ManagerInterface
@@ -103,6 +106,7 @@ type Live struct {
 	logger             log.Logger
 	moduleManager      module.ManagerInterface
 	objectStore        store.Store
+	errorStore         internalErr.ErrorStore
 	pluginManager      plugin.ManagerInterface
 	portForwarder      portforward.PortForwarder
 	kubeConfigPath     string
@@ -120,6 +124,7 @@ func NewLiveConfig(
 	logger log.Logger,
 	moduleManager module.ManagerInterface,
 	objectStore store.Store,
+	errorStore internalErr.ErrorStore,
 	pluginManager plugin.ManagerInterface,
 	portForwarder portforward.PortForwarder,
 	currentContextName string,
@@ -132,6 +137,7 @@ func NewLiveConfig(
 		logger:             logger,
 		moduleManager:      moduleManager,
 		objectStore:        objectStore,
+		errorStore:         errorStore,
 		pluginManager:      pluginManager,
 		portForwarder:      portForwarder,
 		currentContextName: currentContextName,
@@ -162,6 +168,10 @@ func (l *Live) CRDWatcher() CRDWatcher {
 // Store returns an object store.
 func (l *Live) ObjectStore() store.Store {
 	return l.objectStore
+}
+
+func (l *Live) ErrorStore() internalErr.ErrorStore {
+	return l.errorStore
 }
 
 // KubeConfigPath returns the kube config path.
